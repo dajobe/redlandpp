@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: Redland++
+Description: Redland RDF C++ API
+Version: @VERSION@
+Libs: -L${libdir} -lredlandpp
+Libs.private: @LIBS@
+Cflags: -I${includedir}
+
