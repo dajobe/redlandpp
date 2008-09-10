@@ -21,19 +21,21 @@
 # 
 
 
-AM_CPPFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@
-LIBS= @REDLAND_LIBS@
-
-lib_LTLIBRARIES = libredlandpp.la
-
-libredlandpp_la_SOURCES = \
+pkginclude_HEADERS = \
 Raptor.hh \
 RaptorWorld.hh \
 RaptorException.hh \
 RaptorParser.hh \
 RaptorParserDescriptor.hh \
 RaptorTriple.hh \
-RaptorUri.hh \
+RaptorUri.hh
+
+AM_CXXFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@
+AM_LDFLAGS= @REDLAND_LIBS@
+
+lib_LTLIBRARIES = libredlandpp.la
+
+libredlandpp_la_SOURCES = \
 RaptorWorld.cc \
 RaptorException.cc \
 RaptorParser.cc \
