@@ -4,13 +4,13 @@
 
 // RaptorUri class
 
-RaptorUri::RaptorUri(Raptor* r, const std::string str) throw(RaptorException)
+RaptorUri::RaptorUri(Raptor* r, const std::string s) throw(RaptorException)
 {
   raptor_ = r;
   uri_ = raptor_new_uri_v2(raptor_->getWorld(),
-                           (const unsigned char*)str.c_str());
+                           (const unsigned char*)s.c_str());
   if(uri_ == NULL)
-    throw RaptorException("Failed to create uri " + str);
+    throw RaptorException("Failed to create uri " + s);
 }
 
 RaptorUri::RaptorUri(Raptor* r, raptor_uri* uri) throw(RaptorException)
