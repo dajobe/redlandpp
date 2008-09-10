@@ -67,8 +67,10 @@ RaptorNode* identifier_to_node(Raptor* r,
   
   switch(type) {
     case RAPTOR_IDENTIFIER_TYPE_RESOURCE:
-      RaptorUri* uri=new RaptorUri(r, (raptor_uri*)object);
-      node=new RaptorUriNode(uri);
+      {
+        RaptorUri* uri=new RaptorUri(r, (raptor_uri*)object);
+        node=new RaptorUriNode(uri);
+      }
       break;
       
     case RAPTOR_IDENTIFIER_TYPE_ANONYMOUS:
