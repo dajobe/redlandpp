@@ -45,7 +45,10 @@ const std::string RaptorUri::str() const
 
 std::ostream& operator<< (std::ostream& os, const RaptorUri& uri)
 {
-  std::string s;
-  s = (char*)raptor_uri_as_string_v2(uri.raptor_->getWorld(), uri.uri_);
-  return os << s;
+  return os << uri.str();
+}
+
+std::ostream& operator<< (std::ostream& os, const RaptorUri* uri)
+{
+  return os << uri->str();
 }

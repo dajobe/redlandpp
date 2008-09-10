@@ -36,7 +36,12 @@ int main(int argc, char *argv[])
 
   cout << "Parser is " << parser->getName() << endl;
 
-  parser->parseUri(uri, uri);
+  try {
+    parser->parseUri(uri, NULL);
+  }
+  catch (RaptorException &e) {
+    cout << "parseUri(" << uri << ") failed with exception " << e.what() << endl;
+  }
   
   return 0;
 }

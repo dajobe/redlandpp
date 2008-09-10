@@ -19,8 +19,6 @@ public:
   // public methods
   const std::string str() const;
 
-  friend std::ostream& operator<< (std::ostream& os, const RaptorUri& uri);
-  
   raptor_uri* getUri() const;
   
   RaptorUri(Raptor* r, raptor_uri* uri) throw(RaptorException);
@@ -36,6 +34,8 @@ private:
   raptor_uri* uri_;
   
   friend class Raptor;
+  friend std::ostream& operator<< (std::ostream& os, const RaptorUri& uri);
+  friend std::ostream& operator<< (std::ostream& os, const RaptorUri* uri);
 };
 
 #endif

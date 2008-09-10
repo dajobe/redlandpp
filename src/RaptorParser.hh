@@ -21,12 +21,12 @@ public:
 
   raptor_parser* getParser() const;
 
-  int parseStart(RaptorUri* uri);
-  int parseChunk(std::string buffer, bool isEnd);
+  int parseStart(RaptorUri* uri) throw(RaptorException);
+  int parseChunk(std::string buffer, bool isEnd) throw(RaptorException);
 
   //int parseFileStream(FILE* stream, std::string filename, RaptorUri* base_uri);
-  int parseFile(RaptorUri* uri, RaptorUri* base_uri);
-  int parseUri(RaptorUri* uri, RaptorUri* base_uri);
+  int parseFile(RaptorUri* uri, RaptorUri* base_uri) throw(RaptorException);
+  int parseUri(RaptorUri* uri, RaptorUri* base_uri) throw(RaptorException);
   void parseAbort();
 
 protected:
@@ -36,6 +36,8 @@ protected:
 
 private:
   Raptor* raptor_;
+
+  std::string* error_;
   
   // C object
   raptor_parser* parser_;
@@ -45,6 +47,9 @@ private:
   friend class Raptor;
   friend void parseStatementHandler(void *user_data, const raptor_statement *statement);
   friend std::ostream& operator<< (std::ostream& os, const RaptorParser& parser);
+  friend void parseErrorHandler(void *user_data, raptor_locator* locator, const char *message);
+  friend void parseWarningHandler(void *user_data, raptor_locator* locator, const char *message);
 };
+
 
 #endif
