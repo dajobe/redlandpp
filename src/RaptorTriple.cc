@@ -18,24 +18,24 @@ const std::string RaptorNode::str()
 }
 
 
-RaptorLiteralNode::RaptorLiteralNode(std::string value, std::string language, RaptorUri* datatype) : value(value), language(language), datatype(datatype)
+RaptorLiteralNode::RaptorLiteralNode(std::string nvalue, std::string nlanguage, RaptorUri* ndatatype) : value(nvalue), language(nlanguage), datatype(ndatatype)
 {
 }
 
 
 std::string RaptorLiteralNode::makeStr()
 {
-  std::string str = "\"" + value + "\"";
+  std::string s = "\"" + value + "\"";
   if(language.length() > 0)
-    str.append("@" + language);
+    s.append("@" + language);
   if(datatype != NULL)
-    str.append("^^<" + datatype->str() + ">");
+    s.append("^^<" + datatype->str() + ">");
 
-  return str;
+  return s;
 }
 
 
-RaptorUriNode::RaptorUriNode(RaptorUri* value) : value(value)
+RaptorUriNode::RaptorUriNode(RaptorUri* nvalue) : value(nvalue)
 {
 }
 
@@ -46,7 +46,7 @@ std::string RaptorUriNode::makeStr()
 }
 
 
-RaptorBlankNode::RaptorBlankNode(const char* id) : id(id)
+RaptorBlankNode::RaptorBlankNode(const char* nid) : id(nid)
 {
 }
 
@@ -63,33 +63,41 @@ RaptorNode* identifier_to_node(Raptor* r,
                                raptor_uri *datatype,
                                const unsigned char *language)
 {
+  RaptorNode* node=NULL;
+  
   switch(type) {
     case RAPTOR_IDENTIFIER_TYPE_RESOURCE:
       RaptorUri* uri=new RaptorUri(r, (raptor_uri*)object);
-      return new RaptorUriNode(uri);
+      node=new RaptorUriNode(uri);
       break;
       
     case RAPTOR_IDENTIFIER_TYPE_ANONYMOUS:
-      return new RaptorBlankNode((const char*)object);
+      node=new RaptorBlankNode((const char*)object);
       break;
       
     case RAPTOR_IDENTIFIER_TYPE_LITERAL:
-    {
-      RaptorUri* datatype_uri=NULL;
-      if(datatype != NULL)
-        datatype_uri=new RaptorUri(r, datatype);
-      std::string language_str;
-      if(language != NULL)
-        language_str=(const char*)language;
+      {
+        RaptorUri* datatype_uri=NULL;
+        if(datatype != NULL)
+          datatype_uri=new RaptorUri(r, datatype);
+        std::string language_str;
+        if(language != NULL)
+          language_str=(const char*)language;
 
-      return new RaptorLiteralNode((const char*)object,
+        node=new RaptorLiteralNode((const char*)object,
                                    language_str, datatype_uri);
-    }
+      }
       break;
       
+    case RAPTOR_IDENTIFIER_TYPE_UNKNOWN:
+    case RAPTOR_IDENTIFIER_TYPE_PREDICATE:
+    case RAPTOR_IDENTIFIER_TYPE_ORDINAL:
+    case RAPTOR_IDENTIFIER_TYPE_XML_LITERAL:
     default:
       break;
   }
+
+  return node;
 }
 
 
