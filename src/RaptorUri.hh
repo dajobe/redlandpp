@@ -14,7 +14,7 @@ class RaptorUri
 {
 public:
   // public destructor
-  RaptorUri::~RaptorUri();
+  ~RaptorUri();
 
   // public methods
   const std::string str() const;
@@ -23,11 +23,11 @@ public:
   
   raptor_uri* getUri() const;
   
-  RaptorUri::RaptorUri(Raptor* r, raptor_uri* uri) throw(RaptorException);
+  RaptorUri(Raptor* r, raptor_uri* uri) throw(RaptorException);
 
 protected:
   // protected constructor
-  RaptorUri::RaptorUri(Raptor* r, const std::string str) throw(RaptorException);
+  RaptorUri(Raptor* r, const std::string str) throw(RaptorException);
 
 private:
   Raptor* raptor_;

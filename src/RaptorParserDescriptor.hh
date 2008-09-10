@@ -13,13 +13,12 @@ public:
   std::string mime_type;
   std::string uri_string;
 
-  friend std::ostream& operator<< (std::ostream& os, const RaptorParserDescriptor& desc);
-
 protected:
   // protected constructor
   RaptorParserDescriptor(std::string name, std::string label, std::string mime_type, std::string uri_string);
 
   friend class Raptor;
+  friend std::ostream& operator<< (std::ostream& os, const RaptorParserDescriptor& desc);
 };
 
 #endif

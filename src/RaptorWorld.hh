@@ -17,23 +17,23 @@
 class Raptor {
 public:
   // default constructor
-  Raptor::Raptor();
+  Raptor();
   
   // destructor
-  Raptor::~Raptor();
+  ~Raptor();
 
-  raptor_world* Raptor::getWorld();
+  raptor_world* getWorld();
 
   /* Constants */
-  const std::string Raptor::getShortCopyrightString() const;
-  const std::string Raptor::getCopyrightString() const;
-  const std::string Raptor::getVersionString() const;
-  const int Raptor::getVersionMajor() const;
-  const int Raptor::getVersionMinor() const;
-  const int Raptor::getVersionRelease() const;
-  const int Raptor::getVersionDecimal() const;
-  const std::string Raptor::getLicenseString() const;
-  const std::string Raptor::getHomeUrlString() const;
+  const std::string getShortCopyrightString() const;
+  const std::string getCopyrightString() const;
+  const std::string getVersionString() const;
+  const int getVersionMajor() const;
+  const int getVersionMinor() const;
+  const int getVersionRelease() const;
+  const int getVersionDecimal() const;
+  const std::string getLicenseString() const;
+  const std::string getHomeUrlString() const;
 
   //const std::string getXmlNamespaceUri() const;
   //const std::string getRdfNamespaceUri() const;

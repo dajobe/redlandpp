@@ -9,19 +9,17 @@
 class RaptorParser {
 public:
   // public destructor
-  RaptorParser::~RaptorParser();
+  ~RaptorParser();
 
   // public methods
   // raptor_get_name
-  const std::string RaptorParser::getName() const;
+  const std::string getName() const;
   // raptor_get_label
-  const std::string RaptorParser::getLabel() const;
+  const std::string getLabel() const;
 
   const std::string str() const;
 
-  friend std::ostream& operator<< (std::ostream& os, const RaptorParser& parser);
-  
-  raptor_parser* RaptorParser::getParser() const;
+  raptor_parser* getParser() const;
 
   int parseStart(RaptorUri* uri);
   int parseChunk(std::string buffer, bool isEnd);
@@ -33,8 +31,8 @@ public:
 
 protected:
   // protected constructor
-  RaptorParser::RaptorParser(Raptor* r, const std::string name) throw(RaptorException);
-  RaptorParser::RaptorParser(Raptor* r, RaptorUri* uri, std::string mime_type, const std::string buffer, const std::string identifier) throw(RaptorException);
+  RaptorParser(Raptor* r, const std::string name) throw(RaptorException);
+  RaptorParser(Raptor* r, RaptorUri* uri, std::string mime_type, const std::string buffer, const std::string identifier) throw(RaptorException);
 
 private:
   Raptor* raptor_;
@@ -46,6 +44,7 @@ private:
 
   friend class Raptor;
   friend void parseStatementHandler(void *user_data, const raptor_statement *statement);
+  friend std::ostream& operator<< (std::ostream& os, const RaptorParser& parser);
 };
 
 #endif
