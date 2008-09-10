@@ -53,10 +53,10 @@ public:
   const std::string guessParserName(RaptorUri* uri, const std::string mime_type, const std::string buffer, const std::string identifier);
   
   // raptor_new_parser
-  RaptorParser* newParser(const std::string);
+  RaptorParser* newParser(const std::string name);
 
   // URI constructors
-  RaptorUri* newUri(const std::string);
+  RaptorUri* newUri(const std::string str);
 
 protected:
   
