@@ -43,22 +43,22 @@ const std::string Raptor::getVersionString() const
   return raptor_version_string;
 }
 
-const int Raptor::getVersionMajor() const
+int Raptor::getVersionMajor() const
 {
   return raptor_version_major;
 }
 
-const int Raptor::getVersionMinor() const
+int Raptor::getVersionMinor() const
 {
   return raptor_version_minor;
 }
 
-const int Raptor::getVersionRelease() const
+int Raptor::getVersionRelease() const
 {
   return raptor_version_release;
 }
 
-const int Raptor::getVersionDecimal() const
+int Raptor::getVersionDecimal() const
 {
   return raptor_version_decimal;
 }

@@ -28,10 +28,10 @@ public:
   const std::string getShortCopyrightString() const;
   const std::string getCopyrightString() const;
   const std::string getVersionString() const;
-  const int getVersionMajor() const;
-  const int getVersionMinor() const;
-  const int getVersionRelease() const;
-  const int getVersionDecimal() const;
+  int getVersionMajor() const;
+  int getVersionMinor() const;
+  int getVersionRelease() const;
+  int getVersionDecimal() const;
   const std::string getLicenseString() const;
   const std::string getHomeUrlString() const;
 
