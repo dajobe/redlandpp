@@ -31,7 +31,8 @@ RaptorTriple.hh \
 RaptorUri.hh
 
 AM_CXXFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@
-AM_LDFLAGS= @REDLAND_LIBS@
+# libredlandpp_la_LDFLAGS would work too
+LDFLAGS = @REDLAND_LIBS@ -version-info @REDLANDPP_LIBTOOL_VERSION@
 
 lib_LTLIBRARIES = libredlandpp.la
 
@@ -43,4 +44,3 @@ RaptorParserDescriptor.cc \
 RaptorTriple.cc \
 RaptorUri.cc
 
-libredlandpp_la_LDFLAGS = -version-info @REDLANDPP_LIBTOOL_VERSION@
