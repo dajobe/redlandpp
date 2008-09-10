@@ -30,6 +30,12 @@ AM_INIT_AUTOMAKE([1.7 check-news std-options -Wall])
 AM_CONFIG_HEADER(src/redlandpp_config.h)
 AM_MAINTAINER_MODE
 
+if test "$USE_MAINTAINER_MODE" = yes ; then
+  CFLAGS=`echo $CFLAGS | sed -e "s/-O[A-Za-z0-9]*//"`
+  CXXFLAGS=`echo $CXXFLAGS | sed -e "s/-O[A-Za-z0-9]*//"`
+  CPPFLAGS=`echo $CPPFLAGS | sed -e "s/-O[A-Za-z0-9]*//"`
+fi
+
 dnl Checks for programs.
 AC_CANONICAL_HOST
 AM_SANITY_CHECK
