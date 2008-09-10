@@ -159,12 +159,12 @@ const std::string guessParserName(RaptorUri& uri,
                                   buffer_c, buffer_len_c, identifier_c);
 }
 
-RaptorUri Raptor::newUri(const std::string str)
+RaptorUri* Raptor::newUri(const std::string str)
 {
-  return RaptorUri::RaptorUri(this, str);
+  return new RaptorUri(this, str);
 }
 
-RaptorParser Raptor::newParser(const std::string name)
+RaptorParser* Raptor::newParser(const std::string name)
 {
-  return RaptorParser::RaptorParser(this, name);
+  return new RaptorParser(this, name);
 }

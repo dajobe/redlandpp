@@ -23,18 +23,18 @@ public:
   
   raptor_parser* RaptorParser::getParser() const;
 
-  int parseStart(RaptorUri& uri);
+  int parseStart(RaptorUri* uri);
   int parseChunk(std::string buffer, bool isEnd);
 
-  //int parseFileStream(FILE* stream, std::string filename, RaptorUri& base_uri);
-  int parseFile(RaptorUri& uri, RaptorUri& base_uri);
-  int parseUri(RaptorUri& uri, RaptorUri& base_uri);
+  //int parseFileStream(FILE* stream, std::string filename, RaptorUri* base_uri);
+  int parseFile(RaptorUri* uri, RaptorUri* base_uri);
+  int parseUri(RaptorUri* uri, RaptorUri* base_uri);
   void parseAbort();
 
 protected:
   // protected constructor
   RaptorParser::RaptorParser(Raptor* r, const std::string name) throw(RaptorException);
-  RaptorParser::RaptorParser(Raptor* r, RaptorUri& uri, std::string mime_type, const std::string buffer, const std::string identifier) throw(RaptorException);
+  RaptorParser::RaptorParser(Raptor* r, RaptorUri* uri, std::string mime_type, const std::string buffer, const std::string identifier) throw(RaptorException);
 
 private:
   Raptor* raptor_;

@@ -50,13 +50,13 @@ public:
   // (raptor_syntax_name_check, raptor_syntax_name_check_v2)
   bool isParserName(const std::string name);
   // (raptor_guess_parser_name, raptor_guess_parser_name_v2)
-  const std::string guessParserName(RaptorUri& uri, const std::string mime_type, const std::string buffer, const std::string identifier);
+  const std::string guessParserName(RaptorUri* uri, const std::string mime_type, const std::string buffer, const std::string identifier);
   
   // raptor_new_parser
-  RaptorParser newParser(const std::string);
+  RaptorParser* newParser(const std::string);
 
   // URI constructors
-  RaptorUri newUri(const std::string);
+  RaptorUri* newUri(const std::string);
 
 protected:
   

@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
   cout << "Initialised Raptor " + r.getVersionString() << endl <<
     r.getShortCopyrightString() << endl;
   
-  RaptorUri uri = r.newUri("http://librdf.org/raptor/raptor.rdf");
+  RaptorUri* uri = r.newUri("http://librdf.org/raptor/raptor.rdf");
 
   cout << "URI is " << uri << endl;
 
@@ -32,11 +32,11 @@ int main(int argc, char *argv[])
     cout << "foobar IS NOT a parser name\n";
   }
 
-  RaptorParser parser = r.newParser("rdfxml");
+  RaptorParser* parser = r.newParser("rdfxml");
 
-  cout << "Parser is " << parser.getName() << endl;
+  cout << "Parser is " << parser->getName() << endl;
 
-  parser.parseUri(uri, uri);
+  parser->parseUri(uri, uri);
   
   return 0;
 }

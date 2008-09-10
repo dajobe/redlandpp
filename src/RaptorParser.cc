@@ -16,7 +16,7 @@ RaptorParser::RaptorParser(Raptor* r, const std::string name) throw(RaptorExcept
   triples_ = NULL;
 }
 
-RaptorParser::RaptorParser(Raptor* r, RaptorUri& uri, 
+RaptorParser::RaptorParser(Raptor* r, RaptorUri* uri, 
                            std::string mime_type, 
                            const std::string buffer,
                            const std::string identifier) throw(RaptorException)
@@ -38,7 +38,7 @@ RaptorParser::RaptorParser(Raptor* r, RaptorUri& uri,
     identifier_c = (const unsigned char*)identifier.c_str();
 
   parser_ = raptor_new_parser_for_content_v2(raptor_->getWorld(), 
-                                             uri.getUri(), mime_type_c,
+                                             uri->getUri(), mime_type_c,
                                              buffer_c, buffer_len_c,
                                              identifier_c);
   if (parser_ == NULL)
@@ -85,9 +85,9 @@ std::ostream& operator<< (std::ostream& os, const RaptorParser& parser)
 }
   
 
-int RaptorParser::parseStart(RaptorUri& uri)
+int RaptorParser::parseStart(RaptorUri* uri)
 {
-  return raptor_start_parse(parser_, uri.getUri());
+  return raptor_start_parse(parser_, uri->getUri());
 }
 
 
@@ -104,9 +104,9 @@ int RaptorParser::parseChunk(std::string buffer, bool isEnd)
 }
 
 
-int RaptorParser::parseFile(RaptorUri& uri, RaptorUri& base_uri)
+int RaptorParser::parseFile(RaptorUri* uri, RaptorUri* base_uri)
 {
-  return raptor_parse_file(parser_, uri.getUri(), base_uri.getUri());
+  return raptor_parse_file(parser_, uri->getUri(), base_uri->getUri());
 }
 
 
@@ -122,13 +122,13 @@ void parseStatementHandler(void *user_data,
 }
 
 
-int RaptorParser::parseUri(RaptorUri& uri, RaptorUri& base_uri)
+int RaptorParser::parseUri(RaptorUri* uri, RaptorUri* base_uri)
 {
   triples_ = new std::vector<const raptor_statement*>;
   
   raptor_set_statement_handler(parser_, this, parseStatementHandler);
 
-  int rc = raptor_parse_uri(parser_, uri.getUri(), base_uri.getUri());
+  int rc = raptor_parse_uri(parser_, uri->getUri(), base_uri->getUri());
 
   raptor_set_statement_handler(parser_, NULL, NULL);
 
