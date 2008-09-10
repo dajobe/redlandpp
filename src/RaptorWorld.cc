@@ -80,7 +80,7 @@ raptor_world* Raptor::getWorld()
 }
 
 
-RaptorParserDescriptor Raptor::getParserDescriptor(const unsigned int counter) throw(RaptorException)
+RaptorParserDescription Raptor::getParserDescription(const unsigned int counter) throw(RaptorException)
 {
   const char* name_p = NULL;
   const char* label_p = NULL;
@@ -104,20 +104,20 @@ RaptorParserDescriptor Raptor::getParserDescriptor(const unsigned int counter) t
   if (uri_string_p != NULL)
     uri_string = (const char*)uri_string_p;
 
-  RaptorParserDescriptor d(name, label, mime_type, uri_string);
+  RaptorParserDescription d(name, label, mime_type, uri_string);
   
   return d;
 }
 
 
-std::vector<RaptorParserDescriptor> Raptor::getParserDescriptors() 
+std::vector<RaptorParserDescription> Raptor::getParserDescriptions() 
 {
-  std::vector<RaptorParserDescriptor> v;
+  std::vector<RaptorParserDescription> v;
   int i = 0;
   
   while (true) {
     try {
-      RaptorParserDescriptor d = getParserDescriptor(i++);
+      RaptorParserDescription d = getParserDescription(i++);
       // Always adds in constant time
       v.push_back(d);
     }

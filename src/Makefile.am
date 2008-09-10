@@ -26,7 +26,7 @@ Raptor.hh \
 RaptorWorld.hh \
 RaptorException.hh \
 RaptorParser.hh \
-RaptorParserDescriptor.hh \
+RaptorParserDescription.hh \
 RaptorTriple.hh \
 RaptorUri.hh
 
@@ -39,7 +39,7 @@ libredlandpp_la_SOURCES = \
 RaptorWorld.cc \
 RaptorException.cc \
 RaptorParser.cc \
-RaptorParserDescriptor.cc \
+RaptorParserDescription.cc \
 RaptorTriple.cc \
 RaptorUri.cc
 

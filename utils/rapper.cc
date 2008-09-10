@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
   cout << "URI is " << uri << endl;
 
-  std::vector<RaptorParserDescriptor> v=r.getParserDescriptors();
+  std::vector<RaptorParserDescription> v=r.getParserDescriptions();
   for (unsigned int i = 0; i < v.size(); i++ ) {
     cout << "Parser " << i << endl << v[i] << endl;
   }

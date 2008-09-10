@@ -6,7 +6,7 @@
 #include <RaptorException.hh>
 #include <RaptorWorld.hh>
 #include <RaptorUri.hh>
-#include <RaptorParserDescriptor.hh>
+#include <RaptorParserDescription.hh>
 #include <RaptorParser.hh>
 #include <RaptorTriple.hh>
 

@@ -3,7 +3,7 @@
 
 #include <RaptorException.hh>
 #include <RaptorUri.hh>
-#include <RaptorParserDescriptor.hh>
+#include <RaptorParserDescription.hh>
 #include <RaptorParser.hh>
 
 #include <raptor.h>
@@ -45,8 +45,8 @@ public:
   // parser information
   // (raptor_parsers_enumerate, raptor_parsers_enumerate_v2, 
   // raptor_syntaxes_enumerate, raptor_syntaxes_enumerate_v2)
-  RaptorParserDescriptor getParserDescriptor(const unsigned int counter) throw(RaptorException);
-  std::vector<RaptorParserDescriptor> getParserDescriptors();
+  RaptorParserDescription getParserDescription(const unsigned int counter) throw(RaptorException);
+  std::vector<RaptorParserDescription> getParserDescriptions();
   // (raptor_syntax_name_check, raptor_syntax_name_check_v2)
   bool isParserName(const std::string name);
   // (raptor_guess_parser_name, raptor_guess_parser_name_v2)
