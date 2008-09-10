@@ -1,0 +1,55 @@
+2008-09-09  Dave Beckett <dave@dajobe.org>
+
+	* configure.ac, redlandpp.pc.in, src/Makefile.am: Install headers
+	in pkgincludes
+
+	* src/Makefile.am, src/RaptorParser.cc, src/RaptorParser.hh,
+	src/RaptorWorld.cc, src/RaptorWorld.hh, utils/rapper.cc: Replace
+	references & with * except where required - via Chris
+
+	* configure.ac: remove -O flags in maintainer mode
+
+	* src/RaptorUri.cc: fix warn
+
+	* utils/rapper.cc: fix wraning
+
+	* src/RaptorParserDescriptor.cc, src/RaptorTriple.cc: Fix warnings
+
+	* utils: props
+
+	* AUTHORS, COPYING, COPYING.LIB, ChangeLog, LICENSE-2.0.txt,
+	Makefile.am, NEWS, NOTICE, README, autogen.sh, configure.ac,
+	redlandpp.pc.in, src, src/Makefile.am, src/rapper.cc, utils,
+	utils/Makefile.am, utils/rapper.cc (from /trunk/src/rapper.cc:3):
+	autotooled - builds against SVN raptor in sibling dir
+
+	* src/Makefile: Remove Makefile
+
+	* src, src/Makefile: Hand crafted build
+
+	* Raptor.hh, RaptorException.cc, RaptorException.hh,
+	RaptorParser.cc, RaptorParser.hh, RaptorParserDescriptor.cc,
+	RaptorParserDescriptor.hh, RaptorTriple.cc, RaptorTriple.hh,
+	RaptorUri.cc, RaptorUri.hh, RaptorWorld.cc, RaptorWorld.hh,
+	rapper.cc, src, src/Raptor.hh (from /trunk/Raptor.hh:2),
+	src/RaptorException.cc (from /trunk/RaptorException.cc:2),
+	src/RaptorException.hh (from /trunk/RaptorException.hh:2),
+	src/RaptorParser.cc (from /trunk/RaptorParser.cc:2),
+	src/RaptorParser.hh (from /trunk/RaptorParser.hh:2),
+	src/RaptorParserDescriptor.cc (from
+	/trunk/RaptorParserDescriptor.cc:2),
+	src/RaptorParserDescriptor.hh (from
+	/trunk/RaptorParserDescriptor.hh:2), src/RaptorTriple.cc (from
+	/trunk/RaptorTriple.cc:2), src/RaptorTriple.hh (from
+	/trunk/RaptorTriple.hh:2), src/RaptorUri.cc (from
+	/trunk/RaptorUri.cc:2), src/RaptorUri.hh (from
+	/trunk/RaptorUri.hh:2), src/RaptorWorld.cc (from
+	/trunk/RaptorWorld.cc:2), src/RaptorWorld.hh (from
+	/trunk/RaptorWorld.hh:2), src/rapper.cc (from /trunk/rapper.cc:2):
+	Moved to src dir
+
+	* Raptor.hh, RaptorException.cc, RaptorException.hh,
+	RaptorParser.cc, RaptorParser.hh, RaptorParserDescriptor.cc,
+	RaptorParserDescriptor.hh, RaptorTriple.cc, RaptorTriple.hh,
+	RaptorUri.cc, RaptorUri.hh, RaptorWorld.cc, RaptorWorld.hh,
+	rapper.cc: Import of raptorpp tests
