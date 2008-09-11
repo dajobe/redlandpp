@@ -33,14 +33,13 @@ AM_MAINTAINER_MODE
 dnl Checks for programs.
 AC_CANONICAL_HOST
 AM_SANITY_CHECK
+
+AC_LANG([C++])
+
 AC_PROG_CXX
 
-m4_undefine([AC_PROG_F77])
-m4_defun([AC_PROG_F77],[])
 AC_PROG_LIBTOOL
 AC_PROG_INSTALL
-AC_PROG_LN_S
-AC_PROG_MAKE_SET
 
 # Find a tar command for 'make dist'
 AC_CHECK_PROGS(TAR, gnutar gtar tar)
@@ -71,11 +70,12 @@ AC_DEFUN([REDLAND_CXX_TRY_FLAG], [
 
 possible_warnings="-Wall -Wextra \
 -Wshadow -Wpointer-arith -Wredundant-decls -Wswitch-enum \
--Wsign-compare -Wwrite-strings
+-Wsign-compare -Wwrite-strings \
 -Wpacked -Wmissing-format-attribute -Wpointer-arith -Wcast-align -Winit-self \
 -Wunsafe-loop-optimizations \
 -Wno-missing-field-initializers -Wno-unused-parameter \
--Wformat-security"
+-Wformat-security\
+-Woverloaded-virtual"
 
 warning_cflags=
 if test "$USE_MAINTAINER_MODE" = yes; then
