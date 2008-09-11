@@ -74,7 +74,7 @@ possible_warnings="-Wall -Wextra \
 -Wpacked -Wmissing-format-attribute -Wpointer-arith -Wcast-align -Winit-self \
 -Wunsafe-loop-optimizations \
 -Wno-missing-field-initializers -Wno-unused-parameter \
--Wformat-security\
+-Wformat-security \
 -Woverloaded-virtual"
 
 warning_cflags=
