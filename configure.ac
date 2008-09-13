@@ -24,7 +24,7 @@ dnl
 
 AC_INIT(Redland++, 0.1.0, http://bugs.librdf.org/, redlandpp)
 AC_PREREQ(2.50)
-AC_CONFIG_SRCDIR(src/Raptor.hh)
+AC_CONFIG_SRCDIR(src/Redland.h)
 
 AM_INIT_AUTOMAKE([1.7 check-news std-options -Wall])
 AM_CONFIG_HEADER(src/redlandpp_config.h)
@@ -56,16 +56,16 @@ dnl compiler checks
 
 AC_DEFUN([REDLAND_CXX_TRY_FLAG], [
   AC_MSG_CHECKING([whether $CXX supports $1])
-  redland_save_CFLAGS="$CFLAGS"
-  CFLAGS="$CFLAGS $1"
-  AC_COMPILE_IFELSE([ ], [redland_cc_flag=yes], [redland_cc_flag=no])
-  CFLAGS="$redland_save_CFLAGS"
-  if test "X$redland_cc_flag" = "Xyes"; then
+  redland_save_CXXFLAGS="$CXXFLAGS"
+  CXXFLAGS="$CXXFLAGS $1"
+  AC_COMPILE_IFELSE([ ], [redland_cxx_flag=yes], [redland_cxx_flag=no])
+  CXXFLAGS="$redland_save_CXXFLAGS"
+  if test "X$redland_cxx_flag" = "Xyes"; then
     ifelse([$2], , :, [$2])
   else
     ifelse([$3], , :, [$3])
   fi
-  AC_MSG_RESULT($redland_cc_flag)
+  AC_MSG_RESULT($redland_cxx_flag)
 ])
 
 possible_warnings="-Wall -Wextra \
@@ -93,32 +93,22 @@ if test "$USE_MAINTAINER_MODE" = yes; then
 fi
 
 dnl Checks for libraries.
-raptor_dir=../raptor
-raptor_config=$raptor_dir/raptor-src-config
-
 REDLAND_MIN_VERSION=1.0.8
-AC_MSG_WARN(Prefering to link with SVN raptor - FIX THIS BEFORE RELEASE)
-if test -r $raptor_config; then
-  REDLAND_VERSION="SVN raptor `$raptor_config --version`"
-  REDLAND_CFLAGS=`$raptor_config --cflags`
-  REDLAND_LIBS=`$raptor_config --libs`
+if $PKG_CONFIG redland --exists; then
+  :
 else
-  if $PKG_CONFIG redland --exists; then
-    :
-  else
-    AC_MSG_ERROR(Redland is not installed - see http://librdf.org/ to get a version newer than $REDLAND_MIN_VERSION)
-  fi
-
-  REDLAND_VERSION=`$PKG_CONFIG redland --modversion 2>/dev/null`
-  if $PKG_CONFIG redland --atleast-version=$REDLAND_MIN_VERSION; then
-    :
-  else
-    AC_MSG_ERROR(Installed redland $REDLAND_VERSION is too old - need $REDLAND_MIN_VERSION)
-  fi
-
-  REDLAND_CFLAGS="`$PKG_CONFIG redland --cflags` $LIBRDF_EXTERNAL_CPPFLAGS"
-  REDLAND_LIBS="`$PKG_CONFIG redland --libs` $LIBRDF_EXTERNAL_LIBS"
+  AC_MSG_ERROR(Redland is not installed - see http://librdf.org/ to get a version newer than $REDLAND_MIN_VERSION)
 fi
+
+REDLAND_VERSION=`$PKG_CONFIG redland --modversion 2>/dev/null`
+if $PKG_CONFIG redland --atleast-version=$REDLAND_MIN_VERSION; then
+  :
+else
+  AC_MSG_ERROR(Installed redland $REDLAND_VERSION is too old - need $REDLAND_MIN_VERSION)
+fi
+
+REDLAND_CFLAGS="`$PKG_CONFIG redland --cflags` $LIBRDF_EXTERNAL_CPPFLAGS"
+REDLAND_LIBS="`$PKG_CONFIG redland --libs` $LIBRDF_EXTERNAL_LIBS"
 AC_SUBST(REDLAND_CFLAGS)
 AC_SUBST(REDLAND_LIBS)
 
