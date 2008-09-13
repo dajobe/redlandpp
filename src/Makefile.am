@@ -22,7 +22,7 @@
 
 
 pkginclude_HEADERS = \
-World.h
+World.hpp
 
 AM_CXXFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@
 AM_LDFLAGS = @REDLAND_LIBS@ -version-info @REDLANDPP_LIBTOOL_VERSION@
@@ -30,4 +30,4 @@ AM_LDFLAGS = @REDLAND_LIBS@ -version-info @REDLANDPP_LIBTOOL_VERSION@
 lib_LTLIBRARIES = libredlandpp.la
 
 libredlandpp_la_SOURCES = \
-World.cc
+World.cpp
