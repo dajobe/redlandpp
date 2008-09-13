@@ -24,8 +24,8 @@ bin_PROGRAMS = rapperpp
 
 AM_CPPFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@ -I$(top_srcdir)/src 
 
-rapperpp_SOURCES = rapper.cc
-rapperpp_LDADD= $(top_builddir)/src/libredlandpp.la
+rdfprocpppp_SOURCES = rdfprocpp.cc
+rdfprocpppp_LDADD= $(top_builddir)/src/libredlandpp.la
 
 $(top_builddir)/src/libredlandpp.la:
 	cd $(top_builddir)/src && $(MAKE) libredlandpp.la
