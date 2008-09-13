@@ -1,6 +1,6 @@
 # -*- Mode: Makefile -*-
 #
-# Makefile.am - automake file for raptor++
+# Makefile.am - automake file for Redland++
 #
 # Copyright (C) 2008, David Beckett http://www.dajobe.org/
 # 
@@ -22,13 +22,7 @@
 
 
 pkginclude_HEADERS = \
-Raptor.hh \
-RaptorWorld.hh \
-RaptorException.hh \
-RaptorParser.hh \
-RaptorParserDescription.hh \
-RaptorTriple.hh \
-RaptorUri.hh
+World.h
 
 AM_CXXFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@
 AM_LDFLAGS = @REDLAND_LIBS@ -version-info @REDLANDPP_LIBTOOL_VERSION@
@@ -36,10 +30,4 @@ AM_LDFLAGS = @REDLAND_LIBS@ -version-info @REDLANDPP_LIBTOOL_VERSION@
 lib_LTLIBRARIES = libredlandpp.la
 
 libredlandpp_la_SOURCES = \
-RaptorWorld.cc \
-RaptorException.cc \
-RaptorParser.cc \
-RaptorParserDescription.cc \
-RaptorTriple.cc \
-RaptorUri.cc
-
+World.cc
