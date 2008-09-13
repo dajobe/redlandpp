@@ -24,7 +24,7 @@ dnl
 
 AC_INIT(Redland++, 0.1.0, http://bugs.librdf.org/, redlandpp)
 AC_PREREQ(2.50)
-AC_CONFIG_SRCDIR(src/Redland.h)
+AC_CONFIG_SRCDIR(src/Redland.hpp)
 
 AM_INIT_AUTOMAKE([1.7 check-news std-options -Wall])
 AM_CONFIG_HEADER(src/redlandpp_config.h)
