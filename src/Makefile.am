@@ -22,6 +22,8 @@
 
 
 pkginclude_HEADERS = \
+Exception.hpp \
+Log.hpp \
 World.hpp
 
 AM_CXXFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@
@@ -30,4 +32,6 @@ AM_LDFLAGS = @REDLAND_LIBS@ -version-info @REDLANDPP_LIBTOOL_VERSION@
 lib_LTLIBRARIES = libredlandpp.la
 
 libredlandpp_la_SOURCES = \
+Exception.cpp \
+Log.cpp \
 World.cpp

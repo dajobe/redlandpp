@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.hpp - Redland++ World interface
+ * Log.hpp - Redland++ Log class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -22,34 +22,47 @@
  */
 
 
-#ifndef REDLANDPP_WORLD_HPP
-#define REDLANDPP_WORLD_HPP
+#ifndef REDLANDPP_LOG_H
+#define REDLANDPP_LOG_H
 
 #include <redland.H>
-
-#include <Exception.hpp>
-#include <Wrapper.hpp>
 
 namespace Redland {
 
   using namespace std;
 
-  class World : public Wrapper<librdf_world> {
+  class Log {
     public:
-      // default constructor
-      World();
+      Log(librdf_log_message *log) throw();
 
-      // destructor
-      ~World();
+      ~Log() throw();
 
-      librdf_world* world();
+      // error code
+      int code;
+
+      librdf_log_level level;
+
+      librdf_log_facility facility;
+
+      string message;
+
+      // Fields from raptor_locator* locator;
+
+      void* uri; // Uri *uri;
+
+      string file;
+
+      int line;
+
+      int column;
+
+      int byte;  
+
 
     protected:
-
     private:
-      std::string error_;
 
-      friend int redland_world_log_handler(void *user_data, librdf_log_message *log);
+      friend std::ostream& operator<< (std::ostream& os, const Log& o);
   };
 
 

@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Wrapper.h - Redland C Object Pointer wrapper
+ * Wrapper.hpp - Redland C Object Pointer wrapper
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

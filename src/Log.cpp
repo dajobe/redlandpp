@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.cpp - Redland C++ World class
+ * Log.cpp - Redland C++ Log class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -26,37 +26,53 @@
 #include <redlandpp_config.h>
 #endif
 
-#include <World.hpp>
+#include <string>
+#include <ostream>
 
+#include <Log.hpp>
 
 namespace Redland {
 
   using namespace std;
 
-  int redland_world_log_handler(void *user_data, librdf_log_message *log)
+  Log::Log(librdf_log_message* log) throw()
   {
-    World* world = (World*)user_data;
-    world->error_ = std::string("Error: ") + log->message;
-    return 0;
-  }
-  
+    code = log->code;
+    level = log->level;
+    facility = log->facility;
+    message = string(log->message);
 
-  World::World() 
-    : Redland::Wrapper<librdf_world>((redland_object_free*)librdf_free_world,
-                                     librdf_new_world())
-  {
-    librdf_world_set_logger(redland_obj(), this, redland_world_log_handler);
-  }
-
-
-  World::~World()
-  {
+    if(log->locator) {
+      uri = NULL; // uri = log->locator->uri;
+      if(log->locator->file)
+        file = string(log->locator->file);
+      line = log->locator->line;
+      column = log->locator->column;
+      byte = log->locator->byte;
+    }
   }
 
 
-  librdf_world* World::world()
+  Log::~Log() throw()
   {
-    return redland_obj();
+  }
+
+
+  ostream& operator<< (ostream& os, const Log& log)
+  {
+    string str= log.message;
+    if(log.file.length()  || log.uri != NULL) {
+      str += " at ";
+      if(log.line >= 0) {
+        str +=  "line ";
+        str += log.line;
+        str += " of ";
+      }
+      if(log.file.length())
+        str += log.file;
+    }
+
+    return os << str;
   }
 
 } // namespace Redland

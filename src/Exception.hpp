@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.hpp - Redland++ World interface
+ * Exception.hpp - Redland++ Exception class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -22,34 +22,34 @@
  */
 
 
-#ifndef REDLANDPP_WORLD_HPP
-#define REDLANDPP_WORLD_HPP
+#ifndef REDLANDPP_EXCEPTION_H
+#define REDLANDPP_EXCEPTION_H
 
-#include <redland.H>
+#include <stdexcept>
 
-#include <Exception.hpp>
-#include <Wrapper.hpp>
+#include <redland.h>
+
+#include <Log.hpp>
+
 
 namespace Redland {
 
   using namespace std;
 
-  class World : public Wrapper<librdf_world> {
-    public:
-      // default constructor
-      World();
+  class Exception : std::exception
+  {
+  public:
+    Exception(string message) throw();
+    Exception(Log* log) throw();
 
-      // destructor
-      ~World();
+    ~Exception() throw();
 
-      librdf_world* world();
+    const char* what() const throw();
 
-    protected:
+  private:
+    string message_;
 
-    private:
-      std::string error_;
-
-      friend int redland_world_log_handler(void *user_data, librdf_log_message *log);
+    Log* log_;
   };
 
 
