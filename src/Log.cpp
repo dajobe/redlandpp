@@ -61,14 +61,14 @@ namespace Redland {
   ostream& operator<< (ostream& os, const Log& log)
   {
     string str= log.message;
-    if(log.file.length()  || log.uri != NULL) {
+    if(log.file.size()  || log.uri != NULL) {
       str += " at ";
       if(log.line >= 0) {
         str +=  "line ";
         str += log.line;
         str += " of ";
       }
-      if(log.file.length())
+      if(log.file.size())
         str += log.file;
     }
 
