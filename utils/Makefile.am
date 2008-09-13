@@ -20,12 +20,12 @@
 # 
 # 
 
-bin_PROGRAMS = rapperpp
+bin_PROGRAMS = rdfprocpp
 
 AM_CPPFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@ -I$(top_srcdir)/src 
 
-rdfprocpppp_SOURCES = rdfprocpp.cc
-rdfprocpppp_LDADD= $(top_builddir)/src/libredlandpp.la
+rdfprocpp_SOURCES = rdfprocpp.cc
+rdfprocpp_LDADD= $(top_builddir)/src/libredlandpp.la
 
 $(top_builddir)/src/libredlandpp.la:
 	cd $(top_builddir)/src && $(MAKE) libredlandpp.la
