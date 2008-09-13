@@ -22,9 +22,11 @@
 
 
 pkginclude_HEADERS = \
+Redland.hpp \
 Exception.hpp \
 Log.hpp \
-World.hpp
+World.hpp \
+Wrapper.hpp
 
 AM_CXXFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@
 AM_LDFLAGS = @REDLAND_LIBS@ -version-info @REDLANDPP_LIBTOOL_VERSION@
