@@ -46,11 +46,11 @@ namespace Redland {
       }
 
       // method to return the object
-      const T* redland_obj() { return obj_; }
+      T* redland_obj() { return obj_; }
 
     protected:
       // Redland C object pointer
-      const T* obj_;
+      T* obj_;
 
     private:
       // Redland C function to free Redland C object pointer
