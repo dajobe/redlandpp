@@ -57,22 +57,29 @@ namespace Redland {
   {
   }
 
+  string Log::str() throw() 
+  {
+    string s = message;
+    if(file.size()  || uri != NULL) {
+      if(line >= 0) {
+        s +=  " at line ";
+        s += line;
+        s += " of ";
+      } else
+        s += " in ";
+      if(file.size())
+        s += file;
+      //if(uri != NULL)
+      //  s += uri->str();
+    }
+    return s;
+  }
+
 
   ostream& operator<< (ostream& os, const Log& log)
   {
-    string str= log.message;
-    if(log.file.size()  || log.uri != NULL) {
-      str += " at ";
-      if(log.line >= 0) {
-        str +=  "line ";
-        str += log.line;
-        str += " of ";
-      }
-      if(log.file.size())
-        str += log.file;
-    }
-
-    return os << str;
+    // without need for cast: return os << log.str();
+    return os << ((Log&)log).str();
   }
 
 } // namespace Redland
