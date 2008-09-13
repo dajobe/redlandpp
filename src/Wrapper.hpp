@@ -25,6 +25,8 @@
 #ifndef REDLANDPP_WRAPPER_HPP
 #define REDLANDPP_WRAPPER_HPP
 
+#include <ostream>
+
 namespace Redland {
 
   typedef void (redland_object_free)(void*);
@@ -40,15 +42,15 @@ namespace Redland {
       // destructor
       ~Wrapper() {
         if(obj_ != NULL && free_fn_ != NULL) 
-          free_fn_(obj_);
+          free_fn_((void*)obj_);
       }
 
       // method to return the object
-      T* redland_obj() { return obj_; }
+      const T* redland_obj() { return obj_; }
 
     protected:
       // Redland C object pointer
-      T* obj_;
+      const T* obj_;
 
     private:
       // Redland C function to free Redland C object pointer
@@ -61,6 +63,14 @@ namespace Redland {
       Wrapper(const Wrapper&);
       // assignment constructor
       void operator=(const Wrapper&);
+
+      friend std::ostream& operator<< (std::ostream& os, const Wrapper<T>& o)
+      {
+        return os << "<Redland Object 0x"
+                  << std::hex
+                  << ((Wrapper<T>&)o).redland_obj()
+                  << ">";
+      }
     };
 
 } // namespace Redland

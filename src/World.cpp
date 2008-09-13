@@ -33,23 +33,19 @@ namespace Redland {
 
   using namespace std;
 
-  World::World()
+  World::World() 
+    : Redland::Wrapper<librdf_world>((redland_object_free*)librdf_free_world,
+                                     librdf_new_world())
   {
-    librdf_world* w = librdf_new_world();
-    if(w) {
-      librdf_world_open(w);
-      world_ = new Wrapper<librdf_world>((redland_object_free*)librdf_free_world,
-                                         w);
-    }
   }
 
   World::~World()
   {
   }
 
-  librdf_world* World::world()
+  const librdf_world* World::world()
   {
-    return world_->redland_obj();
+    return redland_obj();
   }
 
 } // namespace Redland

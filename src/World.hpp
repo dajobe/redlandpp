@@ -33,7 +33,7 @@ namespace Redland {
 
   using namespace std;
 
-  class World {
+  class World : public Wrapper<librdf_world> {
     public:
       // default constructor
       World();
@@ -41,12 +41,11 @@ namespace Redland {
       // destructor
       ~World();
 
-      librdf_world* world();
+      const librdf_world* world();
 
     protected:
 
     private:
-      Wrapper<librdf_world>* world_;
   };
 
 
