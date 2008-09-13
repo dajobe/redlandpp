@@ -25,7 +25,7 @@
 #ifndef REDLANDPP_HPP
 #define REDLANDPP_HPP
 
-#include <redland.H>
+#include <redland.h>
 
 #include <Wrapper.hpp>
 #include <World.hpp>
