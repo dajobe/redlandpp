@@ -3,15 +3,18 @@
 #include <iostream>
 #include <string>
 
-#include <Raptor.hh>
+#include <Redland.hpp>
 
 using namespace std;
+
+using namespace Redland;
 
 
 int main(int argc, char *argv[])
 {
-  Raptor r;
-  
+  World red;
+
+#if 0  
   cout << "Initialised Raptor " + r.getVersionString() << endl <<
     r.getShortCopyrightString() << endl;
   
@@ -42,6 +45,7 @@ int main(int argc, char *argv[])
   catch (RaptorException &e) {
     cout << "parseUri(" << uri << ") failed with exception " << e.what() << endl;
   }
+#endif
   
   return 0;
 }
