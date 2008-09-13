@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
 {
   World red;
 
+  cout << "Initialised Redland " << red << endl;
+
 #if 0  
   cout << "Initialised Raptor " + r.getVersionString() << endl <<
     r.getShortCopyrightString() << endl;
