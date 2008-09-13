@@ -25,7 +25,7 @@
 #ifndef REDLANDPP_LOG_H
 #define REDLANDPP_LOG_H
 
-#include <redland.H>
+#include <redland.h>
 
 namespace Redland {
 
@@ -36,6 +36,8 @@ namespace Redland {
       Log(librdf_log_message *log) throw();
 
       ~Log() throw();
+
+      string str() throw();
 
       // error code
       int code;
