@@ -36,6 +36,10 @@ namespace Redland {
 
   class Uri : Wrapper<librdf_uri> {
     public:
+      // public constructors
+      Uri(World* world, const string str) throw(Exception);
+      Uri(World* world, librdf_uri* uri) throw(Exception);
+
       // public destructor
       ~Uri();
 
@@ -43,9 +47,6 @@ namespace Redland {
       const string str() const;
 
       librdf_uri* uri() const;
-
-      Uri(World* world, const string str) throw(Exception);
-      Uri(World* world, librdf_uri* uri) throw(Exception);
 
     protected:
 
