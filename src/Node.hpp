@@ -43,7 +43,7 @@ namespace Redland {
     public:
       Node(World* world);
 
-      virtual ~Node()=0;
+      virtual ~Node() {};
     
       const string str();
 
@@ -69,6 +69,7 @@ namespace Redland {
       LiteralNode(World* w, librdf_node* n);
 
       LiteralNode(World* world, string value, string language, Uri* datatype=NULL);
+
     private:
       string makeStr();
   };
