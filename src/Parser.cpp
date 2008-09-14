@@ -104,9 +104,15 @@ namespace Redland {
   }
 
 
-  ostream& operator<< (ostream& os, const Parser& parser)
+  ostream& operator<< (ostream& os, const Parser& p)
   {
-    return os << parser.str();
+    return os << p.str();
+  }
+
+
+  ostream& operator<< (ostream& os, const Parser* p)
+  {
+    return os << p->str();
   }
 
 

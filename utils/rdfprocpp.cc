@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 
   Parser* parser = new Parser(red, string("rdfxml"));
 
-  cout << "Parser is " << parser->name() << endl;
+  cout << "Parser is " << parser << endl;
 
   try {
     Stream* s = parser->parseUri(uri, NULL);

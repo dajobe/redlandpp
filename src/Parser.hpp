@@ -62,7 +62,8 @@ namespace Redland {
   private:
     std::string name_;
 
-    friend ostream& operator<< (ostream& os, const Parser& parser);
+    friend ostream& operator<< (ostream& os, const Parser& p);
+    friend ostream& operator<< (ostream& os, const Parser* p);
   };
 
 
