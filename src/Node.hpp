@@ -43,14 +43,14 @@ namespace Redland {
     public:
       Node(World* world);
 
-      ~Node();
+      virtual ~Node();
 
       const string str();
 
-      string makeStr() { return ""; };
-
     protected:
       World* world_;
+
+      virtual string makeStr() { return ""; };
 
     private:
       string str_;
