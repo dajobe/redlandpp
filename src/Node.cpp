@@ -62,6 +62,24 @@ namespace Redland {
   }
 
 
+  LiteralNode::LiteralNode(World* w, librdf_node* n)
+    : Node(w), value(""), language(""), datatype(NULL)
+  {
+    obj_=librdf_new_node_from_node(n);
+
+    const char* value_str=(const char*)librdf_node_get_literal_value(n);
+    value = value_str;
+    
+    const char* language_str=(const char*)librdf_node_get_literal_value_language(n);
+    if(language_str)
+      language = language_str;
+    
+    librdf_uri* datatype_uri = librdf_node_get_literal_value_datatype_uri(n);
+    if(datatype_uri != NULL)
+      datatype = new Uri(w, datatype_uri);
+  }
+
+
   LiteralNode::LiteralNode(World* w, string nvalue, string nlanguage,
                            Uri* ndatatype)
     : Node(w), value(nvalue), language(nlanguage), datatype(ndatatype)

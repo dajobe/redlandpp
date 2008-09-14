@@ -66,6 +66,8 @@ namespace Redland {
       string language;
       Uri* datatype;
 
+      LiteralNode::LiteralNode(World* w, librdf_node* n);
+
       LiteralNode(World* world, string value, string language, Uri* datatype=NULL);
 
       string makeStr();

@@ -61,21 +61,7 @@ namespace Redland {
         break;
 
       case LIBRDF_NODE_TYPE_LITERAL:
-        {
-          const char* value_str=(const char*)librdf_node_get_literal_value(n);
-
-          char* language=librdf_node_get_literal_value_language(n);
-          string language_str;
-          if(language != NULL)
-            language_str=(const char*)language;
-
-          librdf_uri* datatype=librdf_node_get_literal_value_datatype_uri(n);
-          Uri* datatype_uri=NULL;
-          if(datatype != NULL)
-            datatype_uri=new Uri(w, datatype);
-
-          node=new LiteralNode(w, value_str, language_str, datatype_uri);
-        }
+        node=new LiteralNode(w, n);
         break;
 
       case LIBRDF_NODE_TYPE_UNKNOWN:
