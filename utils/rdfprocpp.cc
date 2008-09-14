@@ -62,6 +62,8 @@ int main(int argc, char *argv[])
 
   delete parser;
 
+  delete uri;
+  
   delete red;
 
   return 0;
