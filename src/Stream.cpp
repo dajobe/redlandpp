@@ -47,11 +47,6 @@ namespace Redland {
   }
   
 
-  Stream::~Stream()
-  {
-  }
-
-
   const string Stream::str()
     throw()
   {

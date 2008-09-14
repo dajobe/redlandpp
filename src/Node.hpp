@@ -43,15 +43,14 @@ namespace Redland {
     public:
       Node(World* world);
 
-      virtual ~Node() {};
-    
       const string str();
+
+      string makeStr() { return ""; };
 
     protected:
       World* world_;
 
     private:
-      virtual string makeStr() = 0;
       string str_;
 
     friend ostream& operator<< (ostream& os, const Node& node);
