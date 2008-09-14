@@ -179,10 +179,10 @@ namespace Redland {
 
 
   BlankNode::BlankNode(World* w, librdf_node* n)
-    : Node(w), id("")
+    : Node(w)
   {
     const char* id_str=(const char*)librdf_node_get_blank_identifier(n);
-    id = id_str;
+    id = string(id_str);
   }
 
 
