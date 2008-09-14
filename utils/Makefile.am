@@ -24,7 +24,7 @@ bin_PROGRAMS = rdfprocpp
 
 AM_CPPFLAGS = -DREDLANDPP_INTERNAL @REDLAND_CFLAGS@ -I$(top_srcdir)/src 
 
-rdfprocpp_SOURCES = rdfprocpp.cc
+rdfprocpp_SOURCES = rdfprocpp.cpp
 rdfprocpp_LDADD= $(top_builddir)/src/libredlandpp.la
 
 $(top_builddir)/src/libredlandpp.la:
