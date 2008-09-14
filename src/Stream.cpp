@@ -47,6 +47,12 @@ namespace Redland {
   }
   
 
+  Stream::~Stream()
+  {
+    delete world_;
+  }
+
+
   const string Stream::str()
     throw()
   {

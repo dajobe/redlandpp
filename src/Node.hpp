@@ -43,6 +43,8 @@ namespace Redland {
     public:
       Node(World* world);
 
+      ~Node();
+
       const string str();
 
       string makeStr() { return ""; };

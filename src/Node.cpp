@@ -48,6 +48,12 @@ namespace Redland {
   }
   
 
+  Node::~Node()
+  {
+    delete world_;
+  }
+
+
   Node* makeNode(World* w, librdf_node* n) 
   {
     Node* node=NULL;
