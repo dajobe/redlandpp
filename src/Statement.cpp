@@ -54,7 +54,10 @@ namespace Redland {
         break;
 
       case LIBRDF_NODE_TYPE_BLANK:
-        node=new BlankNode(w, (const char*)librdf_node_get_blank_identifier(n));
+        {
+          const char* id=(const char*)librdf_node_get_blank_identifier(n);
+          node=new BlankNode(w, id);
+        }
         break;
 
       case LIBRDF_NODE_TYPE_LITERAL:
