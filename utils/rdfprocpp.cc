@@ -52,11 +52,15 @@ int main(int argc, char *argv[])
         break;
       cout << "Triple " << st << endl;
       s->next();
+      delete st;
     }
+    delete s;
   }
   catch (Exception &e) {
     cout << "parseUri(" << uri << ") failed with exception " << e.what() << endl;
   }
-  
+
+  delete parser;
+
   return 0;
 }
