@@ -138,7 +138,7 @@ namespace Redland {
   Stream* Parser::parseUri(Uri* uri, Uri* base_uri = NULL)
     throw(Exception)
   {
-    librdf_uri* buri=(base_uri != NULL) ? base_uri->uri() : NULL;
+    librdf_uri* buri = (base_uri != NULL) ? base_uri->uri() : NULL;
     librdf_stream* stream;
     stream = librdf_parser_parse_as_stream(obj_, uri->uri(), buri);
     world_->check_and_throw();
