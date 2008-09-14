@@ -41,38 +41,6 @@ namespace Redland {
   
   using namespace std;
 
-  Node* makeNode(World* w, librdf_node* n) 
-  {
-    Node* node=NULL;
-    
-    switch(librdf_node_get_type(n)) {
-      case LIBRDF_NODE_TYPE_RESOURCE:
-        {
-          Uri* uri=new Uri(w, librdf_node_get_uri(n));
-          node=new UriNode(w, uri);
-        }
-        break;
-
-      case LIBRDF_NODE_TYPE_BLANK:
-        {
-          const char* id=(const char*)librdf_node_get_blank_identifier(n);
-          node=new BlankNode(w, id);
-        }
-        break;
-
-      case LIBRDF_NODE_TYPE_LITERAL:
-        node=new LiteralNode(w, n);
-        break;
-
-      case LIBRDF_NODE_TYPE_UNKNOWN:
-      default:
-        break;
-    }
-
-    return node;
-  }
-
-
   Statement::Statement(World* world, const librdf_statement* s)
   {
     subject=makeNode(world, librdf_statement_get_predicate((librdf_statement*)s));

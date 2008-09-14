@@ -48,6 +48,35 @@ namespace Redland {
   }
   
 
+  Node* makeNode(World* w, librdf_node* n) 
+  {
+    Node* node=NULL;
+    
+    switch(librdf_node_get_type(n)) {
+      case LIBRDF_NODE_TYPE_RESOURCE:
+        node = new UriNode(w, n);
+        break;
+
+      case LIBRDF_NODE_TYPE_BLANK:
+        {
+          const char* id=(const char*)librdf_node_get_blank_identifier(n);
+          node=new BlankNode(w, id);
+        }
+        break;
+
+      case LIBRDF_NODE_TYPE_LITERAL:
+        node=new LiteralNode(w, n);
+        break;
+
+      case LIBRDF_NODE_TYPE_UNKNOWN:
+      default:
+        break;
+    }
+
+    return node;
+  }
+
+
   ostream& operator<< (ostream& os, const Node& node)
   {
     return os << node.str_;
@@ -107,9 +136,17 @@ namespace Redland {
   }
 
 
-  UriNode::UriNode(World* w, Uri* nvalue) 
-    : Node(w), value(nvalue)
+  UriNode::UriNode(World* w, Uri* u) 
+    : Node(w), value(u)
   {
+  }
+
+
+  UriNode::UriNode(World* w, librdf_node* n) 
+    : Node(w), value(NULL)
+  {
+    obj_ = librdf_new_node_from_node(n);
+    value = new Uri(w, librdf_node_get_uri(obj_));
   }
 
 
