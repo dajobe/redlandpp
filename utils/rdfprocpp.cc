@@ -62,5 +62,7 @@ int main(int argc, char *argv[])
 
   delete parser;
 
+  delete red;
+
   return 0;
 }
