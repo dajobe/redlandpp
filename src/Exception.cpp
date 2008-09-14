@@ -46,6 +46,8 @@ namespace Redland {
 
   Exception::~Exception() throw()
   {
+    if(log_ != NULL)
+      delete log_;
   }
 
 
