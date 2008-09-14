@@ -127,6 +127,13 @@ namespace Redland {
   }
 
 
+  LiteralNode::~LiteralNode()
+  {
+    if(datatype != NULL)
+      delete datatype;
+  }
+  
+
   string LiteralNode::makeStr()
   {
     string s = "\"" + value + "\"";
@@ -152,6 +159,13 @@ namespace Redland {
     value = new Uri(w, librdf_node_get_uri(obj_));
   }
 
+
+  UriNode::~UriNode()
+  {
+    if(value != NULL)
+      delete value;
+  }
+  
 
   string UriNode::makeStr()
   {
