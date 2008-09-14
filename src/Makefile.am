@@ -25,6 +25,9 @@ pkginclude_HEADERS = \
 Redland.hpp \
 Exception.hpp \
 Log.hpp \
+Node.hpp \
+Statement.hpp \
+Uri.hpp \
 World.hpp \
 Wrapper.hpp
 
@@ -36,4 +39,7 @@ lib_LTLIBRARIES = libredlandpp.la
 libredlandpp_la_SOURCES = \
 Exception.cpp \
 Log.cpp \
+Node.cpp \
+Statement.cpp \
+Uri.cpp \
 World.cpp
