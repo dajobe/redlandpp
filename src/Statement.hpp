@@ -47,6 +47,8 @@ namespace Redland {
       Node* object;
       Node* context;
 
+      ~Statement();
+
     private:
       Statement();
       Statement(World* w, const librdf_statement* s);

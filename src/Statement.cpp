@@ -49,6 +49,11 @@ namespace Redland {
   }
 
 
+  Statement::~Statement()
+  {
+  }
+
+
   ostream& operator<< (ostream& os, const Statement& s)
   {
     return os << "["  << s.subject->str()
