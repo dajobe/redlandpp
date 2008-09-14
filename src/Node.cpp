@@ -87,7 +87,7 @@ namespace Redland {
 
   const string Node::str()
   {
-    if(str_.length() == 0)
+    if(str_.size() == 0)
       str_ = makeStr();
     return str_;
   }
@@ -145,7 +145,7 @@ namespace Redland {
   string LiteralNode::makeStr()
   {
     string s = "\"" + value + "\"";
-    if(language.length() > 0)
+    if(language.size() > 0)
       s.append("@" + language);
     if(datatype != NULL)
       s.append("^^<" + datatype->str() + ">");
