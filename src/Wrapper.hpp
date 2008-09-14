@@ -45,9 +45,11 @@ namespace Redland {
           free_fn_((void*)obj_);
       }
 
-      // method to return the object
-      T* redland_obj() { return obj_; }
+      typedef T cobject;
 
+      inline T* cobj() { return obj_; }
+      inline const T* cobj() const { return obj_; }
+      
     protected:
       // Redland C object pointer
       T* obj_;
@@ -68,7 +70,7 @@ namespace Redland {
       {
         return os << "<Redland Object 0x"
                   << std::hex
-                  << ((Wrapper<T>&)o).redland_obj()
+                  << ((Wrapper<T>&)o).cobj()
                   << ">";
       }
     };

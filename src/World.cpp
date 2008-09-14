@@ -45,7 +45,7 @@ namespace Redland {
     : Redland::Wrapper<librdf_world>((redland_object_free*)librdf_free_world,
                                      librdf_new_world())
   {
-    librdf_world_set_logger(redland_obj(), this, redland_world_log_handler);
+    librdf_world_set_logger(cobj(), this, redland_world_log_handler);
   }
 
 
@@ -56,7 +56,7 @@ namespace Redland {
 
   librdf_world* World::world()
   {
-    return redland_obj();
+    return cobj();
   }
 
 
