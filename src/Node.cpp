@@ -53,7 +53,7 @@ namespace Redland {
   }
 
 
-  Node* makeNode(World* w, librdf_node* n) 
+  Node* makeNode(World* w, librdf_node* n) throw(Exception)
   {
     Node* node=NULL;
     
@@ -94,14 +94,15 @@ namespace Redland {
 
 
   LiteralNode::LiteralNode(World* w, librdf_node* n)
+    throw(Exception)
     : Node(w), value(""), language(""), datatype(NULL)
   {
-    obj_=librdf_new_node_from_node(n);
+    obj_ = librdf_new_node_from_node(n);
 
-    const char* value_str=(const char*)librdf_node_get_literal_value(n);
+    const char* value_str = (const char*)librdf_node_get_literal_value(n);
     value = value_str;
     
-    const char* language_str=(const char*)librdf_node_get_literal_value_language(n);
+    const char* language_str = (const char*)librdf_node_get_literal_value_language(n);
     if(language_str)
       language = language_str;
     
@@ -111,18 +112,26 @@ namespace Redland {
   }
 
 
-  LiteralNode::LiteralNode(World* w, string nvalue, string nlanguage,
-                           Uri* ndatatype)
-    : Node(w), value(nvalue), language(nlanguage), datatype(ndatatype)
+  LiteralNode::LiteralNode(World* w, string v, string l, Uri* d)
+    throw(Exception)
+    : Node(w), value(v), language(l), datatype(d)
   {
-    librdf_uri* duri=NULL;
-    if(datatype != NULL)
-      duri=ndatatype->uri();
+    const unsigned char* value_str;
+    value_str = (const unsigned char*)value.c_str();
     
-    obj_=librdf_new_node_from_typed_literal(w->world(),
-                                            (const unsigned char*)&nvalue,
-                                            (const char*)&nlanguage,
-                                            duri);
+    const char* language_str=NULL;
+    if(language.size() > 0)
+      language_str = language.c_str();
+
+    librdf_uri* datatype_uri=NULL;
+    if(datatype != NULL)
+      datatype_uri = datatype->uri();
+    
+    obj_ = librdf_new_node_from_typed_literal(w->world(),
+                                              value_str, language_str,
+                                              datatype_uri);
+    if(obj_ == NULL)
+      throw Exception("Failed to create node from literal " + value);
   }
 
 
@@ -146,12 +155,14 @@ namespace Redland {
 
 
   UriNode::UriNode(World* w, Uri* u) 
+    throw()
     : Node(w), value(u)
   {
   }
 
 
   UriNode::UriNode(World* w, librdf_node* n) 
+    throw(Exception)
     : Node(w), value(NULL)
   {
     obj_ = librdf_new_node_from_node(n);
@@ -172,16 +183,18 @@ namespace Redland {
   }
 
 
-  BlankNode::BlankNode(World* w, const char* nid)
-    : Node(w), id(nid)
+  BlankNode::BlankNode(World* w, const char* i)
+    throw()
+    : Node(w), id(i)
   {
   }
 
 
   BlankNode::BlankNode(World* w, librdf_node* n)
+    throw()
     : Node(w)
   {
-    const char* id_str=(const char*)librdf_node_get_blank_identifier(n);
+    const char* id_str = (const char*)librdf_node_get_blank_identifier(n);
     id = string(id_str);
   }
 

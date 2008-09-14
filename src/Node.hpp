@@ -58,7 +58,7 @@ namespace Redland {
     friend ostream& operator<< (ostream& os, const Node& node);
   };
 
-  Node* makeNode(World* world, librdf_node* n);
+  Node* makeNode(World* world, librdf_node* n) throw(Exception);
 
 
   class LiteralNode: public Node {
@@ -67,9 +67,9 @@ namespace Redland {
       string language;
       Uri* datatype;
 
-      LiteralNode(World* w, librdf_node* n);
+      LiteralNode(World* w, librdf_node* n) throw(Exception);
 
-      LiteralNode(World* world, string value, string language, Uri* datatype=NULL);
+      LiteralNode(World* world, string value, string language, Uri* datatype=NULL) throw(Exception);
 
       ~LiteralNode();
 
@@ -82,8 +82,8 @@ namespace Redland {
     public:
       Uri* value;
 
-      UriNode(World* w, Uri* nvalue);
-      UriNode(World* w, librdf_node* n);
+      UriNode(World* w, Uri* u) throw();
+      UriNode(World* w, librdf_node* n) throw(Exception);
       
       ~UriNode();
 
@@ -96,8 +96,8 @@ namespace Redland {
     public:
       string id;
 
-      BlankNode(World* w, const char* id);
-      BlankNode(World* w, librdf_node* n);
+      BlankNode(World* w, const char* id) throw();
+      BlankNode(World* w, librdf_node* n) throw();
 
     private:
       string makeStr();
