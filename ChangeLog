@@ -1,4 +1,174 @@
+2008-09-14  Dave Beckett <dave@dajobe.org>
+
+	* utils/Makefile.am, utils/rdfprocpp.cc, utils/rdfprocpp.cpp (from
+	/trunk/utils/rdfprocpp.cc:76): Rename to .cpp to match ../src
+
+	* utils/rdfprocpp.cc: Use World, Parser, Uri directly without
+	pointers. Get rid of deletes
+
+	* utils/rdfprocpp.cc: delete uri
+
+	* utils/rdfprocpp.cc: delete World
+
+	* src/Node.hpp: Make sure makeStr can be overridden
+
+2008-09-13  Dave Beckett <dave@dajobe.org>
+
+	* src/Node.cpp: (BlankNode::BlankNode): Try new string
+
+	* src/Node.cpp, src/Parser.cpp, src/Stream.cpp, src/Uri.cpp:
+	Remove delete world
+
+	* utils/rdfprocpp.cc: delete stuff
+
+	* src/Uri.cpp: Make destructor for Uri delete world_
+
+	* src/Statement.cpp: Add destructor for Statement
+
+	* src/Parser.cpp, src/Parser.hpp: Add destructors for Parser
+
+	* src/Node.cpp, src/Node.hpp: Add destructors for LiteralNode UriNode
+
+	* src/Exception.cpp: (Exception::~Exception): Delete log
+
+	* src/Node.cpp, src/Node.hpp, src/Stream.cpp, src/Stream.hpp: Fun
+	with restoring destructors
+
+	* src/Node.hpp, src/Stream.cpp, src/Stream.hpp: Fun with destructors
+
+	* src/Statement.cpp, src/Statement.hpp: Added Statement destructor
+
+	* src/Stream.cpp, src/Stream.hpp: Added Stream destructor
+
+	* src/Stream.cpp: undo that
+
+	* src/Stream.cpp: (Stream::get): Free passed in statement.
+
+	* src/Node.hpp: Node destructor
+
+	* src/Node.hpp: fix
+
+	* src/Parser.cpp, src/Parser.hpp, utils/rdfprocpp.cc: Add extra
+	Parser ostream<<
+
+	* src/Node.cpp: fix
+
+	* src/Node.cpp, src/Node.hpp: Add BlankNode constructor with
+	librdf_node*
+
+	* src/Node.cpp, src/Node.hpp, src/Statement.cpp: Moved makeNode to
+	Node.cpp and simplify
+
+	* src/Node.cpp, src/Node.hpp, src/Statement.cpp: Added LiteralNode
+	constructor from librdf_node*
+
+	* configure.ac: Make maintainer mode strip out -O flags properly
+
+	* src/Statement.cpp: style
+
+	* src/Statement.cpp: style
+
+	* src/Statement.cpp, src/Statement.hpp, src/Stream.cpp,
+	src/Stream.hpp, utils/rdfprocpp.cc: Stream and Statement now
+	return and print triples
+
+	* src/Makefile.am, src/Parser.cpp, src/Parser.hpp,
+	src/Redland.hpp, src/Stream.cpp, src/Stream.hpp, src/Uri.hpp,
+	src/World.cpp, src/World.hpp, utils/rdfprocpp.cc: Added Parser,
+	Stream
+
+	* src/Makefile.am, src/Node.cpp, src/Node.hpp, src/Statement.cpp,
+	src/Statement.hpp, src/Uri.cpp, src/Uri.hpp: Added Uri, Node,
+	Statement
+
+	* src/Makefile.am: add extra .hpps
+
+	* src/Redland.hpp, src/World.hpp: redland.h
+
+	* src/Log.hpp: redland.h
+
+	* src/Log.cpp: Added Log::str()
+
+	* src/Log.cpp: string.size is shorter
+
+	* src/Exception.cpp, src/Exception.hpp, src/Log.cpp, src/Log.hpp,
+	src/Makefile.am, src/Redland.hpp, src/World.cpp, src/World.hpp,
+	src/Wrapper.hpp: Added Log and Exception classes
+
+	* src/Wrapper.hpp: Remove const for object pointers since librdf
+	functions do not use it.
+
+	* src/World.cpp, src/World.hpp, src/Wrapper.hpp: World now
+	subclasses Wrapper so management of redland pointer is automated
+
+	* utils: props
+
+	* utils/rdfprocpp.cc: Print object
+
+	* configure.ac: renamed header
+
+	* utils/Makefile.am: rdfprocpp
+
+	* src/Makefile.am: Build libredlandpp again
+
+	* src/Redland.hpp: Add Redland.hpp header
+
+	* src/World.cpp, src/World.hpp: Add Redland World class
+
+	* src/Wrapper.hpp: Add Redland object Wrapper template class
+
+	* utils/Makefile.am, utils/rapper.cc, utils/rdfprocpp.cc (from
+	/trunk/utils/rapper.cc:28): Renamed to rdfprocpp
+
+	* utils/rapper.cc: redland only
+
+2008-09-12  Dave Beckett <dave@dajobe.org>
+
+	* configure.ac: Fix -W flag detecting. Switch to Redland.h
+
+	* src/Makefile.am, src/Raptor.hh, src/RaptorException.cc,
+	src/RaptorException.hh, src/RaptorParser.cc, src/RaptorParser.hh,
+	src/RaptorParserDescription.cc, src/RaptorParserDescription.hh,
+	src/RaptorTriple.cc, src/RaptorTriple.hh, src/RaptorUri.cc,
+	src/RaptorUri.hh, src/RaptorWorld.cc, src/RaptorWorld.hh: Remove
+	Raptor++
+
+2008-09-10  Dave Beckett <dave@dajobe.org>
+
+	* configure.ac: *** empty log message ***
+
+	* configure.ac: CXX config and warning tweaks
+
+	* src/RaptorParser.cc, src/RaptorParser.hh, src/RaptorUri.cc,
+	src/RaptorUri.hh, utils/rapper.cc: Exceptions for parsing
+
 2008-09-09  Dave Beckett <dave@dajobe.org>
+
+	* src/Makefile.am, src/Raptor.hh,
+	src/RaptorParserDescription.cc (from
+	/trunk/src/RaptorParserDescriptor.cc:13),
+	src/RaptorParserDescription.hh (from
+	/trunk/src/RaptorParserDescriptor.hh:15),
+	src/RaptorParserDescriptor.cc, src/RaptorParserDescriptor.hh,
+	src/RaptorWorld.cc, src/RaptorWorld.hh, utils/rapper.cc:
+	ParserDescriptor to ParserDescription
+
+	* src/RaptorWorld.hh: give method arg names
+
+	* src/Makefile.am: remove libredlandpp_la_LDFLAGS comment
+
+	* src/Makefile.am: AM_LDFLAGS
+
+	* src/Makefile.am: LDFLAGS
+
+	* src/RaptorTriple.cc: (identifier_to_node): ur scope
+
+	* src/RaptorWorld.cc, src/RaptorWorld.hh: Remove const from
+	functions returning const int
+
+	* src/RaptorParser.hh, src/RaptorParserDescriptor.hh,
+	src/RaptorUri.hh, src/RaptorWorld.hh: Remove namespaces from
+	method names
 
 	* configure.ac, redlandpp.pc.in, src/Makefile.am: Install headers
 	in pkgincludes
