@@ -65,10 +65,8 @@ namespace Redland {
 
     librdf_statement* st;
     st = librdf_stream_get_object(obj_);
-    if(st != NULL) {
+    if(st != NULL)
       s = new Statement(world_, st);
-      librdf_free_statement(st);
-    }
 
     return s;
   }
