@@ -45,10 +45,14 @@ namespace Redland {
       librdf_world* world();
 
     protected:
+      string error_;
 
+      void reset_error() throw();
+
+      void check_and_throw() throw(Exception);
+      
     private:
-      std::string error_;
-
+      friend class Parser;
       friend int redland_world_log_handler(void *user_data, librdf_log_message *log);
   };
 

@@ -26,7 +26,9 @@ Redland.hpp \
 Exception.hpp \
 Log.hpp \
 Node.hpp \
+Parser.hpp \
 Statement.hpp \
+Stream.hpp \
 Uri.hpp \
 World.hpp \
 Wrapper.hpp
@@ -40,6 +42,8 @@ libredlandpp_la_SOURCES = \
 Exception.cpp \
 Log.cpp \
 Node.cpp \
+Parser.cpp \
 Statement.cpp \
+Stream.cpp \
 Uri.cpp \
 World.cpp

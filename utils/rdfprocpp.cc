@@ -12,18 +12,20 @@ using namespace Redland;
 
 int main(int argc, char *argv[])
 {
-  World red;
+  World* red= new World();
 
   cout << "Initialised Redland " << red << endl;
 
 #if 0  
   cout << "Initialised Raptor " + r.getVersionString() << endl <<
     r.getShortCopyrightString() << endl;
-  
-  RaptorUri* uri = r.newUri("http://librdf.org/raptor/raptor.rdf");
+#endif
+
+  Uri* uri = new Uri(red, "http://librdf.org/raptor/raptor.rdf");
 
   cout << "URI is " << uri << endl;
 
+#if 0
   std::vector<RaptorParserDescription> v=r.getParserDescriptions();
   for (unsigned int i = 0; i < v.size(); i++ ) {
     cout << "Parser " << i << endl << v[i] << endl;
@@ -36,18 +38,18 @@ int main(int argc, char *argv[])
   if (!r.isParserName("foobar")) {
     cout << "foobar IS NOT a parser name\n";
   }
+#endif
 
-  RaptorParser* parser = r.newParser("rdfxml");
+  Parser* parser = new Parser(red, string("rdfxml"));
 
-  cout << "Parser is " << parser->getName() << endl;
+  cout << "Parser is " << parser->name() << endl;
 
   try {
-    parser->parseUri(uri, NULL);
+    Stream* s = parser->parseUri(uri, NULL);
   }
-  catch (RaptorException &e) {
+  catch (Exception &e) {
     cout << "parseUri(" << uri << ") failed with exception " << e.what() << endl;
   }
-#endif
   
   return 0;
 }

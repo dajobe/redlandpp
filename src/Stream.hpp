@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Redland.hpp - Redland C++ interface
+ * Stream.hpp - Redland++ Stream classes
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -22,16 +22,37 @@
  */
 
 
-#ifndef REDLANDPP_HPP
-#define REDLANDPP_HPP
+#ifndef REDLANDPP_STREAM_HH
+#define REDLANDPP_STREAM_HH
+
+#include <string>
 
 #include <redland.h>
 
-#include <Wrapper.hpp>
+#include <Exception.hpp>
 #include <World.hpp>
-#include <Uri.hpp>
-#include <Node.hpp>
-#include <Statement.hpp>
-#include <Parser.hpp>
+#include <Wrapper.hpp>
+
+
+namespace Redland {
+
+  using namespace std;
+
+  class Stream: public Wrapper<librdf_stream> {
+    public:
+      Stream(World* w, librdf_stream* s);
+
+      const string str() throw();
+
+    protected:
+      World* world_;
+
+    private:
+  
+    friend ostream& operator<< (ostream& os, const Stream& s);
+  };
+
+} // namespace Redland
+
 
 #endif

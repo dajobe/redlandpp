@@ -44,11 +44,10 @@ namespace Redland {
 
       librdf_uri* uri() const;
 
+      Uri(World* world, const string str) throw(Exception);
       Uri(World* world, librdf_uri* uri) throw(Exception);
 
     protected:
-      // protected constructor
-      Uri(World* world, const string str) throw(Exception);
 
     private:
       World* world_;

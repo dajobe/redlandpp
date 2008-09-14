@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.cpp - Redland C++ World class
+ * Parser.cpp - Redland C++ Parser class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -22,58 +22,50 @@
  */
 
 
+#ifndef REDLANDPP_PARSER_HH
+#define REDLANDPP_PARSER_HH
+
+
 #ifdef HAVE_CONFIG_H
 #include <redlandpp_config.h>
 #endif
 
 #include <World.hpp>
+#include <Exception.hpp>
+#include <Wrapper.hpp>
+#include <Stream.hpp>
+#include <Uri.hpp>
 
 
 namespace Redland {
 
   using namespace std;
 
-  int redland_world_log_handler(void *user_data, librdf_log_message *log)
-  {
-    World* world = (World*)user_data;
-    world->error_ = std::string("Error: ") + log->message;
-    return 0;
-  }
-  
+  class Parser : public Wrapper<librdf_parser> {
+    public:
+    Parser(World* w, const string name) throw(Exception);
+    Parser(World* w, Uri* uri, string mime_type, const string buffer, const string identifier) throw(Exception);
 
-  World::World() 
-    : Redland::Wrapper<librdf_world>((redland_object_free*)librdf_free_world,
-                                     librdf_new_world())
-  {
-    librdf_world_set_logger(redland_obj(), this, redland_world_log_handler);
-  }
+    // public methods
+    const string name() const;
 
+    const string str() const;
 
-  World::~World()
-  {
-  }
+    librdf_parser* parser() const;
 
+    Stream* parseString(string str, Uri* uri, Uri* base_uri) throw(Exception);
+    Stream* parseUri(Uri* uri, Uri* base_uri) throw(Exception);
 
-  librdf_world* World::world()
-  {
-    return redland_obj();
-  }
+  protected:
+      World* world_;
 
+  private:
+    std::string name_;
 
-  void World::reset_error() throw()
-  {
-    error_ = "";
-  }
-
-  void World::check_and_throw()
-    throw(Exception)
-  {
-    if(error_.size() > 0) {
-      string e=error_;
-      reset_error();
-      throw Exception(e);
-    }
-  }
+    friend ostream& operator<< (ostream& os, const Parser& parser);
+  };
 
 
 } // namespace Redland
+
+#endif
