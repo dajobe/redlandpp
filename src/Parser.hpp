@@ -46,6 +46,8 @@ namespace Redland {
     Parser(World* w, const string name) throw(Exception);
     Parser(World* w, Uri* uri, string mime_type, const string buffer, const string identifier) throw(Exception);
 
+    ~Parser();
+
     // public methods
     const string name() const;
 
@@ -60,7 +62,7 @@ namespace Redland {
       World* world_;
 
   private:
-    std::string name_;
+    string name_;
 
     friend ostream& operator<< (ostream& os, const Parser& p);
     friend ostream& operator<< (ostream& os, const Parser* p);
