@@ -91,12 +91,21 @@ namespace Redland {
   }
 
 
-  ostream& operator<< (ostream& os, const Statement& statement)
+  ostream& operator<< (ostream& os, const Statement& s)
   {
-    return os << "["  << statement.subject->str()
-              << ", " << statement.predicate->str()
-              << ", " << statement.object->str()
+    return os << "["  << s.subject->str()
+              << ", " << s.predicate->str()
+              << ", " << s.object->str()
               << "]";
   }
+
+  ostream& operator<< (ostream& os, const Statement* s)
+  {
+    return os << "["  << s->subject->str()
+              << ", " << s->predicate->str()
+              << ", " << s->object->str()
+              << "]";
+  }
+
 
 } // namespace Redland

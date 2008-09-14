@@ -26,30 +26,40 @@
 #define REDLANDPP_STREAM_HH
 
 #include <string>
+#include <iterator>
 
 #include <redland.h>
 
 #include <Exception.hpp>
 #include <World.hpp>
 #include <Wrapper.hpp>
+#include <Stream.hpp>
+#include <Statement.hpp>
 
 
 namespace Redland {
 
   using namespace std;
 
-  class Stream: public Wrapper<librdf_stream> {
+  class Stream
+    : public Wrapper<librdf_stream>
+  {
     public:
       Stream(World* w, librdf_stream* s);
 
       const string str() throw();
 
+      // redland Statement iterators
+      Statement* get() const;
+      bool next() const;
+      
     protected:
       World* world_;
 
     private:
   
     friend ostream& operator<< (ostream& os, const Stream& s);
+
   };
 
 } // namespace Redland

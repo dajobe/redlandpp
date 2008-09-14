@@ -46,6 +46,13 @@ int main(int argc, char *argv[])
 
   try {
     Stream* s = parser->parseUri(uri, NULL);
+    while(true) {
+      Statement* st=s->get();
+      if(st == NULL)
+        break;
+      cout << "Triple " << st << endl;
+      s->next();
+    }
   }
   catch (Exception &e) {
     cout << "parseUri(" << uri << ") failed with exception " << e.what() << endl;

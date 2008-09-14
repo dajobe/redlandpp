@@ -51,8 +51,10 @@ namespace Redland {
       Statement();
       Statement(World* w, const librdf_statement* s);
 
-    friend ostream& operator<< (ostream& os, const Statement& triple);
-    friend void parseStatementHandler(void *user_data, const librdf_statement *statement);
+    friend class Stream;
+    friend ostream& operator<< (ostream& os, const Statement& s);
+    friend ostream& operator<< (ostream& os, const Statement* s);
+    friend void parseStatementHandler(void *user_data, const librdf_statement *s);
   };
 
 

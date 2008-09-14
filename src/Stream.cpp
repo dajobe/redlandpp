@@ -32,6 +32,8 @@
 
 #include <World.hpp>
 #include <Stream.hpp>
+#include <Stream.hpp>
+
 
 namespace Redland {
 
@@ -57,6 +59,20 @@ namespace Redland {
   }
 
 
+  Statement* Stream::get() const
+  {
+    librdf_statement* st;
+    st=librdf_stream_get_object(obj_);
+    if(st != NULL)
+      return new Statement(world_, st);
 
-
+    return NULL;
+  }
+  
+  
+  bool Stream::next() const 
+  {
+    return (librdf_stream_next(obj_) != 0);
+  }
+  
 } // namespace Redland
