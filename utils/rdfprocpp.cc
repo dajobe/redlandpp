@@ -12,7 +12,7 @@ using namespace Redland;
 
 int main(int argc, char *argv[])
 {
-  World* red= new World();
+  World red;
 
   cout << "Initialised Redland " << red << endl;
 
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     r.getShortCopyrightString() << endl;
 #endif
 
-  Uri* uri = new Uri(red, "http://librdf.org/raptor/raptor.rdf");
+  Uri uri(&red, "http://librdf.org/raptor/raptor.rdf");
 
   cout << "URI is " << uri << endl;
 
@@ -40,12 +40,12 @@ int main(int argc, char *argv[])
   }
 #endif
 
-  Parser* parser = new Parser(red, string("rdfxml"));
+  Parser parser(&red, string("rdfxml"));
 
   cout << "Parser is " << parser << endl;
 
   try {
-    Stream* s = parser->parseUri(uri, NULL);
+    Stream* s = parser.parseUri(&uri, NULL);
     while(true) {
       Statement* st=s->get();
       if(st == NULL)
@@ -59,12 +59,6 @@ int main(int argc, char *argv[])
   catch (Exception &e) {
     cout << "parseUri(" << uri << ") failed with exception " << e.what() << endl;
   }
-
-  delete parser;
-
-  delete uri;
-  
-  delete red;
 
   return 0;
 }
