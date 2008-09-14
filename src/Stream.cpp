@@ -61,12 +61,16 @@ namespace Redland {
 
   Statement* Stream::get() const
   {
-    librdf_statement* st;
-    st=librdf_stream_get_object(obj_);
-    if(st != NULL)
-      return new Statement(world_, st);
+    Statement* s=NULL;
 
-    return NULL;
+    librdf_statement* st;
+    st = librdf_stream_get_object(obj_);
+    if(st != NULL) {
+      s = new Statement(world_, st);
+      librdf_free_statement(st);
+    }
+
+    return s;
   }
   
   
