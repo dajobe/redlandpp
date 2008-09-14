@@ -91,6 +91,7 @@ namespace Redland {
       string id;
 
       BlankNode(World* w, const char* id);
+      BlankNode(World* w, librdf_node* n);
 
     private:
       string makeStr();

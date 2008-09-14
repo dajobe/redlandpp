@@ -58,10 +58,7 @@ namespace Redland {
         break;
 
       case LIBRDF_NODE_TYPE_BLANK:
-        {
-          const char* id=(const char*)librdf_node_get_blank_identifier(n);
-          node=new BlankNode(w, id);
-        }
+        node=new BlankNode(w, n);
         break;
 
       case LIBRDF_NODE_TYPE_LITERAL:
@@ -159,6 +156,14 @@ namespace Redland {
   BlankNode::BlankNode(World* w, const char* nid)
     : Node(w), id(nid)
   {
+  }
+
+
+  BlankNode::BlankNode(World* w, librdf_node* n)
+    : Node(w), id(NULL)
+  {
+    const char* id_str=(const char*)librdf_node_get_blank_identifier(n);
+    id = id_str;
   }
 
 
