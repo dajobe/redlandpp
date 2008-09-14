@@ -58,7 +58,6 @@ namespace Redland {
   
   Uri::~Uri()
   {
-    delete world_;
   }
   
   

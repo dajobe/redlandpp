@@ -94,7 +94,6 @@ namespace Redland {
 
   Parser::~Parser()
   {
-    delete world_;
   }
 
   const string Parser::name() const

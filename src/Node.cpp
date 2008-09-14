@@ -50,7 +50,6 @@ namespace Redland {
 
   Node::~Node()
   {
-    delete world_;
   }
 
 

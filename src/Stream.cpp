@@ -49,7 +49,6 @@ namespace Redland {
 
   Stream::~Stream()
   {
-    delete world_;
   }
 
 
