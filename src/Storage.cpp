@@ -41,6 +41,7 @@ namespace Redland {
   using namespace std;
 
   void Storage::init()
+    throw(Exception)
   {
     const char* storage_name_str = storage_name_.c_str();
 

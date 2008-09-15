@@ -65,7 +65,7 @@ namespace Redland {
     string name_;
     string options_;
 
-    void init();
+    void init() throw(Exception);
     
     friend ostream& operator<< (ostream& os, const Storage& p);
     friend ostream& operator<< (ostream& os, const Storage* p);
