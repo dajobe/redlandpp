@@ -67,6 +67,14 @@ namespace Redland {
   };
 
 
+  class MemoryStorage : public Storage {
+    public:
+    MemoryStorage(World* w, const string n, const string opts) throw(Exception);
+
+    ~MemoryStorage();
+  };
+
+
 } // namespace Redland
 
 #endif

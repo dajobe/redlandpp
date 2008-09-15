@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Storage.cpp - Redland C++ Storage class
+ * Storage.cpp - Redland C++ Storage classes
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -101,5 +101,15 @@ namespace Redland {
     return os << p->str();
   }
 
+
+  MemoryStorage::MemoryStorage(World* w, const string n, const string opts)
+    throw(Exception)
+    : Storage(w, "memory", n, opts);
+  {
+  }
+
+  MemoryStorage::~MemoryStorage()
+  {
+  }
 
 } // namespace Redland
