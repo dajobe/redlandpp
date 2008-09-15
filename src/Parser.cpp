@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.cpp - Redland C++ Statement class
+ * Parser.cpp - Redland C++ Parser class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
