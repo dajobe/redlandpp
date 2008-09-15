@@ -56,7 +56,7 @@ namespace Redland {
   }
 
 
-  librdf_statement* statement() const
+  librdf_statement* Statement::statement() const
   {
     return obj_;
   }
