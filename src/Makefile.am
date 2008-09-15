@@ -30,6 +30,7 @@ Node.hpp \
 Parser.hpp \
 Serializer.hpp \
 Statement.hpp \
+Storage.hpp \
 Stream.hpp \
 Uri.hpp \
 World.hpp \
@@ -48,6 +49,7 @@ Node.cpp \
 Parser.cpp \
 Serializer.cpp \
 Statement.cpp \
+Storage.cpp \
 Stream.cpp \
 Uri.cpp \
 World.cpp
