@@ -30,6 +30,8 @@
 #include <redlandpp_config.h>
 #endif
 
+#include <redland.h>
+
 #include <World.hpp>
 #include <Exception.hpp>
 #include <Wrapper.hpp>

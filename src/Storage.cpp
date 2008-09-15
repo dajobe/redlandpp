@@ -35,6 +35,7 @@
 #include <Wrapper.hpp>
 #include <Storage.hpp>
 
+
 namespace Redland {
 
   using namespace std;
