@@ -49,6 +49,8 @@ namespace Redland {
 
       ~Stream();
 
+      librdf_stream* stream() const;
+      
       const string str() throw();
 
       // redland Statement iterators
