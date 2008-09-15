@@ -38,9 +38,9 @@ int main(int argc, char *argv[])
 
   cout << "Initialised Redland " << world << endl;
 
-  MemoryStorage storage(&world);
+  MemoryStorage storage(world);
   
-  Model model(&world, &storage);
+  Model model(world, storage);
   
 #if 0  
   cout << "Initialised Redland " + world.getVersionString() << endl <<
