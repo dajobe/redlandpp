@@ -33,5 +33,8 @@
 #include <Node.hpp>
 #include <Statement.hpp>
 #include <Parser.hpp>
+#include <Serializer.hpp>
+#include <Storage.hpp>
+#include <Model.hpp>
 
 #endif
