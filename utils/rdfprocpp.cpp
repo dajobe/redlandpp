@@ -38,6 +38,10 @@ int main(int argc, char *argv[])
 
   cout << "Initialised Redland " << red << endl;
 
+  MemoryStorage storage(&red);
+  
+  Model model(&red, &storage);
+  
 #if 0  
   cout << "Initialised Raptor " + r.getVersionString() << endl <<
     r.getShortCopyrightString() << endl;
