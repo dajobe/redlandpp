@@ -59,7 +59,7 @@ namespace Redland {
 
     const char* options_str = NULL;
     if(opts.size() > 0)
-      options_ = opts.c_str();
+      options_str = opts.c_str();
     
     obj_ = librdf_new_storage(w->world(), storage_name_str, name_str,
                               options_str);
