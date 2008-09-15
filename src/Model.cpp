@@ -112,5 +112,10 @@ namespace Redland {
   }
 
 
+  int Model::size() const
+  {
+    return librdf_model_size(model());
+  }
+
 
 } // namespace Redland

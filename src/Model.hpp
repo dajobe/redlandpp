@@ -57,6 +57,8 @@ namespace Redland {
     void add(Statement* s) throw(Exception);
     void add(Stream* st) throw(Exception);
 
+    int size() const;
+    
   protected:
     World* world_;
 
