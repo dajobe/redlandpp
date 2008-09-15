@@ -68,6 +68,7 @@ namespace Redland {
     w->reset_error();
   }
 
+
   librdf_storage* Storage::storage() const
   {
     return obj_;

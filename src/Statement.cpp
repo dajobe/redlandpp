@@ -56,6 +56,12 @@ namespace Redland {
   }
 
 
+  librdf_statement* statement() const
+  {
+    return obj_;
+  }
+  
+
   Statement::~Statement()
   {
     if(subject != NULL)
