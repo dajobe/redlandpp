@@ -40,6 +40,26 @@ namespace Redland {
 
   using namespace std;
 
+  void Storage::init()
+  {
+    const char* storage_name_str = storage_name_.c_str();
+
+    const char* name_str = NULL;
+    if(name_.size() > 0)
+      name_str = name_.c_str();
+
+    const char* options_str = NULL;
+    if(options_.size() > 0)
+      options_str = options_.c_str();
+    
+    obj_ = librdf_new_storage(world_->world(), storage_name_str, name_str,
+                              options_str);
+    if (obj_ == NULL)
+      throw Exception("Failed to create storage " + storage_name_ + " with name " + name_ + " and options " + options_);
+
+    world_->reset_error();
+  }
+  
 
   Storage::Storage(World* w, const string sn, const string n,
                    const string opts)
@@ -51,22 +71,21 @@ namespace Redland {
       name_(n),
       options_(opts)
   {
-    const char* storage_name_str = storage_name_.c_str();
+    init();
+  }
 
-    const char* name_str = NULL;
-    if(n.size() > 0)
-      name_str = n.c_str();
 
-    const char* options_str = NULL;
-    if(opts.size() > 0)
-      options_str = opts.c_str();
-    
-    obj_ = librdf_new_storage(w->world(), storage_name_str, name_str,
-                              options_str);
-    if (obj_ == NULL)
-      throw Exception("Failed to create storage " + storage_name_ + " with name " + name_ + " and options " + options_);
-
-    w->reset_error();
+  Storage::Storage(World& w, const string sn, const string n,
+                   const string opts)
+    throw(Exception)
+    : Redland::Wrapper<librdf_storage>((redland_object_free*)librdf_free_storage,
+                                       NULL),
+      world_(&w),
+      storage_name_(sn),
+      name_(n),
+      options_(opts)
+  {
+    init();
   }
 
 
@@ -108,6 +127,12 @@ namespace Redland {
   MemoryStorage::MemoryStorage(World* w, const string n, const string opts)
     throw(Exception)
     : Storage(w, "memory", n, opts)
+  {
+  }
+
+  MemoryStorage::MemoryStorage(World& w, const string n, const string opts)
+    throw(Exception)
+    : Storage(&w, "memory", n, opts)
   {
   }
 
