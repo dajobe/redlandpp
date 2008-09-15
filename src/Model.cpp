@@ -42,6 +42,22 @@ namespace Redland {
 
   using namespace std;
 
+
+  void Model::init(const string opts)
+    throw(Exception)
+  {
+    const char* options_str = NULL;
+    if(opts.size() > 0)
+      options_ = opts.c_str();
+
+    obj_ = librdf_new_model(world_->world(), storage_->storage(), options_str);
+    if (obj_ == NULL)
+      throw Exception("Failed to create model with storage " + storage_->str());
+
+    world_->reset_error();
+  }
+
+
   Model::Model(World* w, Storage* s, const string opts)
     throw(Exception)
     : Redland::Wrapper<librdf_model>((redland_object_free*)librdf_free_model,
@@ -49,15 +65,18 @@ namespace Redland {
       world_(w),
       storage_(s)
   {
-    const char* options_str = NULL;
-    if(opts.size() > 0)
-      options_ = opts.c_str();
+    init(opts);
+  }
 
-    obj_ = librdf_new_model(w->world(), storage_->storage(), options_str);
-    if (obj_ == NULL)
-      throw Exception("Failed to create model with storage " + s->str());
 
-    w->reset_error();
+  Model::Model(World& w, Storage& s, const string opts)
+    throw(Exception)
+    : Redland::Wrapper<librdf_model>((redland_object_free*)librdf_free_model,
+                                     NULL),
+      world_(&w),
+      storage_(&s)
+  {
+    init(opts);
   }
 
 

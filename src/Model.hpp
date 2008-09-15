@@ -46,6 +46,7 @@ namespace Redland {
   class Model : public Wrapper<librdf_model> {
     public:
     Model(World* w, Storage* s, const string opts="") throw(Exception);
+    Model(World& w, Storage& s, const string opts="") throw(Exception);
 
     ~Model();
 
@@ -66,6 +67,8 @@ namespace Redland {
     Storage* storage_;
     string options_;
 
+    void init(const string opts) throw(Exception);
+    
     friend ostream& operator<< (ostream& os, const Model& p);
     friend ostream& operator<< (ostream& os, const Model* p);
   };
