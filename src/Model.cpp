@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Model.cpp - Redland C++ Statement class
+ * Model.cpp - Redland C++ Model class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

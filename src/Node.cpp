@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.cpp - Redland C++ Statement class
+ * Node.cpp - Redland C++ Node classes
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

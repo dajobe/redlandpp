@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Serializer.cpp - Redland C++ Statement class
+ * Serializer.cpp - Redland C++ Serializer class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
