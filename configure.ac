@@ -52,6 +52,8 @@ AC_LANG([C++])
 
 AC_PROG_CXX
 
+m4_undefine([AC_PROG_F77])
+m4_defun([AC_PROG_F77],[])
 AC_PROG_LIBTOOL
 AC_PROG_INSTALL
 
