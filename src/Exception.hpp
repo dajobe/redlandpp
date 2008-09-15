@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Exception.hpp - Redland++ Exception class
+ * Exception.hpp - Redland++ Exception class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

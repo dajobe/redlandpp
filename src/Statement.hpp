@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Statement.hpp - Redland++ Statement/Triple class
+ * Statement.hpp - Redland++ Statement/Triple class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

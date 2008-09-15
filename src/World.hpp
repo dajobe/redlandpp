@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.hpp - Redland++ World interface
+ * World.hpp - Redland++ World class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

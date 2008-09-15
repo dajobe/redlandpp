@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.cpp - Redland C++ Statement class
+ * Stream.cpp - Redland C++ Stream class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

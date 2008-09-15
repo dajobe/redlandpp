@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Storage.cpp - Redland C++ Storage class
+ * Storage.cpp - Redland C++ Storage class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

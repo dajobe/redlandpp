@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Stream.hpp - Redland++ Stream classes
+ * Stream.hpp - Redland++ Stream class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

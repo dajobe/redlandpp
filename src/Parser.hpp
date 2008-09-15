@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Parser.cpp - Redland C++ Parser class
+ * Parser.cpp - Redland C++ Parser class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

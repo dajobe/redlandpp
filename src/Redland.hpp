@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Redland.hpp - Redland C++ interface
+ * Redland.hpp - Redland C++ class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 

@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Node.hpp - Redland++ Node classes
+ * Node.hpp - Redland++ Node classes interfaces
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
