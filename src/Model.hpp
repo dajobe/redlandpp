@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.hpp - Redland++ World interface
+ * Model.cpp - Redland C++ Model class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -22,41 +22,45 @@
  */
 
 
-#ifndef REDLANDPP_WORLD_HPP
-#define REDLANDPP_WORLD_HPP
+#ifndef REDLANDPP_MODEL_HH
+#define REDLANDPP_MODEL_HH
 
-#include <redland.h>
 
+#ifdef HAVE_CONFIG_H
+#include <redlandpp_config.h>
+#endif
+
+#include <World.hpp>
 #include <Exception.hpp>
 #include <Wrapper.hpp>
+#include <Stream.hpp>
+#include <Uri.hpp>
+
 
 namespace Redland {
 
   using namespace std;
 
-  class World : public Wrapper<librdf_world> {
+  class Model : public Wrapper<librdf_model> {
     public:
-      // default constructor
-      World();
+    Model(World* w, Storage* s, const string opts) throw(Exception);
 
-      // destructor
-      ~World();
+    ~Model();
 
-      librdf_world* world();
+    // public methods
+    const string str() const;
 
-    protected:
-      string error_;
+    librdf_model* model() const;
 
-      void reset_error() throw();
+  protected:
+    World* world_;
 
-      void check_and_throw() throw(Exception);
-      
-    private:
-      friend class Model;
-      friend class Parser;
-      friend class Serializer;
-      friend class Storage;
-      friend int redland_world_log_handler(void *user_data, librdf_log_message *log);
+  private:
+    Storage* storage_;
+    string options_;
+
+    friend ostream& operator<< (ostream& os, const Model& p);
+    friend ostream& operator<< (ostream& os, const Model* p);
   };
 
 

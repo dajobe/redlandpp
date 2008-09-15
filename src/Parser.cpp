@@ -40,7 +40,7 @@ namespace Redland {
 
   using namespace std;
 
-  Parser::Parser(World* w, const string n) 
+  Parser::Parser(World* w, const string n)
     throw(Exception)
     : Redland::Wrapper<librdf_parser>((redland_object_free*)librdf_free_parser,
                                       NULL),

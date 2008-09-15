@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.hpp - Redland++ World interface
+ * Storage.cpp - Redland C++ Storage class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -22,41 +22,48 @@
  */
 
 
-#ifndef REDLANDPP_WORLD_HPP
-#define REDLANDPP_WORLD_HPP
+#ifndef REDLANDPP_STORAGE_HH
+#define REDLANDPP_STORAGE_HH
 
-#include <redland.h>
 
+#ifdef HAVE_CONFIG_H
+#include <redlandpp_config.h>
+#endif
+
+#include <World.hpp>
 #include <Exception.hpp>
 #include <Wrapper.hpp>
+#include <Stream.hpp>
+#include <Uri.hpp>
+
 
 namespace Redland {
 
   using namespace std;
 
-  class World : public Wrapper<librdf_world> {
+  class Storage : public Wrapper<librdf_storage> {
     public:
-      // default constructor
-      World();
+    Storage(World* w, const string sn, const string n, const string opts) throw(Exception);
 
-      // destructor
-      ~World();
+    ~Storage();
 
-      librdf_world* world();
+    // public methods
+    const string name() const;
 
-    protected:
-      string error_;
+    const string str() const;
 
-      void reset_error() throw();
+    librdf_storage* storage() const;
 
-      void check_and_throw() throw(Exception);
-      
-    private:
-      friend class Model;
-      friend class Parser;
-      friend class Serializer;
-      friend class Storage;
-      friend int redland_world_log_handler(void *user_data, librdf_log_message *log);
+  protected:
+    World* world_;
+
+  private:
+    string storage_name_;
+    string name_;
+    string options_;
+
+    friend ostream& operator<< (ostream& os, const Storage& p);
+    friend ostream& operator<< (ostream& os, const Storage* p);
   };
 
 

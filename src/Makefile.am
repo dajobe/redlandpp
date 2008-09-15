@@ -25,6 +25,7 @@ pkginclude_HEADERS = \
 Redland.hpp \
 Exception.hpp \
 Log.hpp \
+Model.hpp \
 Node.hpp \
 Parser.hpp \
 Serializer.hpp \
@@ -42,6 +43,7 @@ lib_LTLIBRARIES = libredlandpp.la
 libredlandpp_la_SOURCES = \
 Exception.cpp \
 Log.cpp \
+Model.cpp \
 Node.cpp \
 Parser.cpp \
 Serializer.cpp \
