@@ -52,6 +52,9 @@ namespace Redland {
 
     librdf_model* model() const;
 
+    void add(Statement* s) throw(Exception);
+    void add(Stream* st) throw(Exception);
+
   protected:
     World* world_;
 

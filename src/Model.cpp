@@ -60,6 +60,7 @@ namespace Redland {
     w->reset_error();
   }
 
+
   librdf_model* Model::model() const
   {
     return obj_;
@@ -69,6 +70,7 @@ namespace Redland {
   Model::~Model()
   {
   }
+
 
   const string Model::str() const
   {
@@ -86,6 +88,29 @@ namespace Redland {
   {
     return os << p->str();
   }
+
+
+  void Model::add(Statement* s) throw(Exception)
+  {
+    if(s == NULL)
+      throw Exception("Cannot add NULL statement");
+
+    int rc=librdf_model_add_statement(model(), s->statement());
+    if(rc)
+      throw Exception("Failed to add statement");
+  }
+
+
+  void Model::add(Stream* st) throw(Exception)
+  {
+    if(st == NULL)
+      throw Exception("Cannot add statements from NULL stream");
+
+    int rc=librdf_model_add_statements(model(), st->stream());
+    if(rc)
+      throw Exception("Failed to add statements from stream");
+  }
+
 
 
 } // namespace Redland
