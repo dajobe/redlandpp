@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * World.hpp - Redland++ World interface
+ * Serializer.cpp - Redland C++ Serializer class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -22,39 +22,46 @@
  */
 
 
-#ifndef REDLANDPP_WORLD_HPP
-#define REDLANDPP_WORLD_HPP
+#ifndef REDLANDPP_SERIALIZER_HH
+#define REDLANDPP_SERIALIZER_HH
 
-#include <redland.h>
 
+#ifdef HAVE_CONFIG_H
+#include <redlandpp_config.h>
+#endif
+
+#include <World.hpp>
 #include <Exception.hpp>
 #include <Wrapper.hpp>
+#include <Stream.hpp>
+#include <Uri.hpp>
+
 
 namespace Redland {
 
   using namespace std;
 
-  class World : public Wrapper<librdf_world> {
+  class Serializer : public Wrapper<librdf_serializer> {
     public:
-      // default constructor
-      World();
+    Serializer(World* w, const string name, string mime_type, Uri* uri) throw(Exception);
 
-      // destructor
-      ~World();
+    ~Serializer();
 
-      librdf_world* world();
+    // public methods
+    const string name() const;
 
-    protected:
-      string error_;
+    const string str() const;
 
-      void reset_error() throw();
+    librdf_serializer* serializer() const;
 
-      void check_and_throw() throw(Exception);
-      
-    private:
-      friend class Parser;
-      friend class Serializer;
-      friend int redland_world_log_handler(void *user_data, librdf_log_message *log);
+  protected:
+      World* world_;
+
+  private:
+    string name_;
+
+    friend ostream& operator<< (ostream& os, const Serializer& p);
+    friend ostream& operator<< (ostream& os, const Serializer* p);
   };
 
 

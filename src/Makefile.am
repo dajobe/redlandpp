@@ -27,6 +27,7 @@ Exception.hpp \
 Log.hpp \
 Node.hpp \
 Parser.hpp \
+Serializer.hpp \
 Statement.hpp \
 Stream.hpp \
 Uri.hpp \
@@ -43,6 +44,7 @@ Exception.cpp \
 Log.cpp \
 Node.cpp \
 Parser.cpp \
+Serializer.cpp \
 Statement.cpp \
 Stream.cpp \
 Uri.cpp \
