@@ -40,7 +40,7 @@ namespace Redland {
 
   using namespace std;
 
-  class Statement {
+  class Statement : public Wrapper<librdf_statement> {
     public:
       Node* subject;
       Node* predicate;
@@ -49,7 +49,11 @@ namespace Redland {
 
       ~Statement();
 
+      librdf_statement* statement() const;
+
     private:
+      World* world_;
+      
       Statement();
       Statement(World* w, const librdf_statement* s);
 
