@@ -79,6 +79,7 @@ namespace Redland {
   {
   }
 
+
   const string Storage::name() const
   {
     return name_;
