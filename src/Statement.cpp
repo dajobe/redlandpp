@@ -43,15 +43,14 @@ namespace Redland {
 
   Statement::Statement(World* w, const librdf_statement* s)
     : Redland::Wrapper<librdf_statement>((redland_object_free*)librdf_free_statement,
-                                         (librdf_statement*)s),
+                                         NULL),
     world_(w)
   {
-    subject = makeNode(world_,
-                       librdf_statement_get_predicate((librdf_statement*)s));
-    predicate = makeNode(world_,
-                         librdf_statement_get_predicate((librdf_statement*)s));
-    object = makeNode(world_,
-                      librdf_statement_get_object((librdf_statement*)s));
+    obj_ = librdf_new_statement_from_statement((librdf_statement*)s);
+
+    subject = makeNode(world_, librdf_statement_get_predicate(obj_));
+    predicate = makeNode(world_, librdf_statement_get_predicate(obj_));
+    object = makeNode(world_, librdf_statement_get_object(obj_));
     context = NULL;
   }
 
