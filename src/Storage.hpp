@@ -62,6 +62,7 @@ namespace Redland {
     string name_;
     string options_;
 
+    friend class Model;
     friend ostream& operator<< (ostream& os, const Storage& p);
     friend ostream& operator<< (ostream& os, const Storage* p);
   };
