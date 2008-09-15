@@ -45,7 +45,7 @@ namespace Redland {
 
   class Model : public Wrapper<librdf_model> {
     public:
-    Model(World* w, Storage* s, const string opts) throw(Exception);
+    Model(World* w, Storage* s, const string opts="") throw(Exception);
 
     ~Model();
 

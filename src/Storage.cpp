@@ -41,8 +41,8 @@ namespace Redland {
   using namespace std;
 
 
-  Storage::Storage(World* w, const string sn, const string n="",
-                   const string opts="")
+  Storage::Storage(World* w, const string sn, const string n,
+                   const string opts)
     throw(Exception)
     : Redland::Wrapper<librdf_storage>((redland_object_free*)librdf_free_storage,
                                        NULL),
@@ -105,8 +105,7 @@ namespace Redland {
   }
 
 
-  MemoryStorage::MemoryStorage(World* w, const string n="",
-                               const string opts="")
+  MemoryStorage::MemoryStorage(World* w, const string n, const string opts)
     throw(Exception)
     : Storage(w, "memory", n, opts)
   {

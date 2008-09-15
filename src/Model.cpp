@@ -42,7 +42,7 @@ namespace Redland {
 
   using namespace std;
 
-  Model::Model(World* w, Storage* s, const string opts="")
+  Model::Model(World* w, Storage* s, const string opts)
     throw(Exception)
     : Redland::Wrapper<librdf_model>((redland_object_free*)librdf_free_model,
                                      NULL),
