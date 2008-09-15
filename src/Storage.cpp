@@ -33,12 +33,12 @@
 #include <Exception.hpp>
 #include <World.hpp>
 #include <Wrapper.hpp>
-#include <Stream.hpp>
 #include <Storage.hpp>
 
 namespace Redland {
 
   using namespace std;
+
 
   Storage::Storage(World* w, const string sn, const string n,
                    const string opts)
