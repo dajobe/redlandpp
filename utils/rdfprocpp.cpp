@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
 
   cout << "Parser is " << parser << endl;
 
+#if 0
   try {
     Stream* s = parser.parseUri(&uri, NULL);
     while(true) {
@@ -83,8 +84,20 @@ int main(int argc, char *argv[])
     delete s;
   }
   catch (Exception &e) {
-    cout << "parseUri(" << uri << ") failed with exception " << e.what() << endl;
+    cerr << "parseUri(" << uri << ") failed with exception " << e.what() << endl;
   }
+#endif
+
+  try {
+    Stream* s=parser.parseUri(&uri, NULL);
+    model.add(s);
+    delete s;
+  }
+  catch (Exception &e) {
+    cerr << "parseUri(" << uri << ") failed with exception " << e.what() << endl;
+  }
+
+  cout << "Model has " << model.size() << " triples" << endl;
 
   return 0;
 }
