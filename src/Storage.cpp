@@ -64,7 +64,7 @@ namespace Redland {
     obj_ = librdf_new_storage(w->world(), storage_name_str, name_str,
                               options_str);
     if (obj_ == NULL)
-      throw Exception("Failed to create storage " + storage_name_ + " with name " + name_ + " and options " + opts_);
+      throw Exception("Failed to create storage " + storage_name_ + " with name " + name_ + " and options " + options_);
 
     w->reset_error();
   }
@@ -107,7 +107,7 @@ namespace Redland {
 
   MemoryStorage::MemoryStorage(World* w, const string n, const string opts)
     throw(Exception)
-    : Storage(w, "memory", n, opts);
+    : Storage(w, "memory", n, opts)
   {
   }
 
