@@ -34,20 +34,20 @@ using namespace Redland;
 
 int main(int argc, char *argv[])
 {
-  World red;
+  World world;
 
-  cout << "Initialised Redland " << red << endl;
+  cout << "Initialised Redland " << world << endl;
 
-  MemoryStorage storage(&red);
+  MemoryStorage storage(&world);
   
-  Model model(&red, &storage);
+  Model model(&world, &storage);
   
 #if 0  
-  cout << "Initialised Raptor " + r.getVersionString() << endl <<
-    r.getShortCopyrightString() << endl;
+  cout << "Initialised Redland " + world.getVersionString() << endl <<
+    world.getShortCopyrightString() << endl;
 #endif
 
-  Uri uri(&red, "http://librdf.org/raptor/raptor.rdf");
+  Uri uri(&world, "http://librdf.org/raptor/raptor.rdf");
 
   cout << "URI is " << uri << endl;
 
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
   }
 #endif
 
-  Parser parser(&red, string("rdfxml"));
+  Parser parser(&world, string("rdfxml"));
 
   cout << "Parser is " << parser << endl;
 
