@@ -28,13 +28,14 @@
 
 #include <Exception.hpp>
 
-#include <World.hpp>
 #include <Uri.hpp>
 #include <Statement.hpp>
 
 
 namespace Redland {
 
+  class World;
+  
   class LiteralNode;
   class UriNode;
   class BlankNode;
