@@ -36,16 +36,13 @@ int main(int argc, char *argv[])
 {
   World world;
 
-  cout << "Initialised Redland " << world << endl;
+  cout << "Initialised " << world << endl;
 
   MemoryStorage storage(world);
   
   Model model(world, storage);
   
-#if 0  
-  cout << "Initialised Redland " + world.getVersionString() << endl <<
-    world.getShortCopyrightString() << endl;
-#endif
+  cout << "Redland is " + world.shortCopyrightString() << endl;
 
   Uri uri(&world, "http://librdf.org/raptor/raptor.rdf");
 
