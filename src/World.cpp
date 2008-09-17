@@ -106,4 +106,52 @@ namespace Redland {
       throw Exception("Set world feature " + f->str() + " failed");
   }
 
+
+  const string World::shortCopyrightString() const
+  {
+    return librdf_short_copyright_string;
+  }
+
+
+  const string World::copyrightString() const
+  {
+    return librdf_copyright_string;
+  }
+
+
+  const string World::versionString() const
+  {
+    return librdf_version_string;
+  }
+
+
+  int World::versionMajor() const
+  {
+    return librdf_version_major;
+  }
+
+
+  int World::versionMinor() const
+  {
+    return librdf_version_minor;
+  }
+
+
+  int World::versionRelease() const
+  {
+    return librdf_version_release;
+  }
+
+
+  int World::versionDecimal() const
+  {
+    return librdf_version_decimal;
+  }
+
+
+  std::ostream& operator<< (std::ostream& os, const World& world)
+  {
+    return os << "Redland " + world.versionString();
+  }
+
 } // namespace Redland

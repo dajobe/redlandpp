@@ -50,6 +50,14 @@ namespace Redland {
       Node* feature(Uri* feature) throw(Exception);
       void setFeature(Uri* feature, Node* value) throw(Exception);
 
+      const string shortCopyrightString() const;
+      const string copyrightString() const;
+      const string versionString() const;
+      int versionMajor() const;
+      int versionMinor() const;
+      int versionRelease() const;
+      int versionDecimal() const;
+
     protected:
       string error_;
 
@@ -63,6 +71,8 @@ namespace Redland {
       friend class Serializer;
       friend class Storage;
       friend int redland_world_log_handler(void *user_data, librdf_log_message *log);
+      friend std::ostream& operator<< (std::ostream& os, const World& world);
+
   };
 
 
