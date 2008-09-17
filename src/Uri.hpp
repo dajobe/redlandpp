@@ -30,7 +30,6 @@
 
 #include <redland.h>
 
-#include <World.hpp>
 #include <Exception.hpp>
 #include <Wrapper.hpp>
 
@@ -39,7 +38,8 @@ namespace Redland {
 
   using namespace std;
 
-
+  class World;
+  
   class Uri : Wrapper<librdf_uri> {
     public:
       // public constructors
