@@ -27,11 +27,14 @@
 #endif
 
 #include <World.hpp>
+#include <Exception.hpp>
+#include <Node.hpp>
 
 
 namespace Redland {
 
   using namespace std;
+
 
   int redland_world_log_handler(void *user_data, librdf_log_message *log)
   {
@@ -75,5 +78,32 @@ namespace Redland {
     }
   }
 
+
+  Node* World::feature(Uri* f) throw(Exception)
+  {
+    if(f == NULL)
+      throw Exception("Cannot get NULL world feature");
+    
+    librdf_node* node;
+    node = librdf_world_get_feature(world(), f->uri());
+    if(node == NULL)
+      throw Exception("Cannot get world feature "+f->str());
+
+    return makeNode(this, node);
+  }
+
+
+  void World::setFeature(Uri* f, Node* v) throw(Exception)
+  {
+    if(f == NULL)
+      throw Exception("Cannot set NULL world feature");
+    
+    if(v == NULL)
+      throw Exception("Cannot set world feature " + f->str() + " to NULL value");
+    
+    int rc = librdf_world_set_feature(world(), f->uri(), v->node());
+    if(rc)
+      throw Exception("Set world feature " + f->str() + " failed");
+  }
 
 } // namespace Redland

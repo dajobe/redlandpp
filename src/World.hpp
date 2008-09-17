@@ -29,10 +29,13 @@
 
 #include <Exception.hpp>
 #include <Wrapper.hpp>
+#include <Uri.hpp>
+#include <Node.hpp>
 
 namespace Redland {
 
   using namespace std;
+
 
   class World : public Wrapper<librdf_world> {
     public:
@@ -43,6 +46,9 @@ namespace Redland {
       ~World();
 
       librdf_world* world();
+
+      Node* feature(Uri* feature) throw(Exception);
+      void setFeature(Uri* feature, Node* value) throw(Exception);
 
     protected:
       string error_;
