@@ -39,11 +39,14 @@ namespace Redland {
 
   using namespace std;
 
+
   class Node: public Wrapper<librdf_node> {
     public:
       Node(World* world);
 
       virtual ~Node();
+
+      librdf_node* node() const;
 
       const string str();
 

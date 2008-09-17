@@ -32,11 +32,12 @@
 
 #include <redland.h>
 
-#include <World.hpp>
 #include <Statement.hpp>
 #include <Node.hpp>
 
 namespace Redland {
+
+  class World;
 
   using namespace std;
 
@@ -47,6 +48,12 @@ namespace Redland {
   {
   }
   
+
+  librdf_node* Node::node() const
+  {
+    return obj_;
+  }
+
 
   Node::~Node()
   {
