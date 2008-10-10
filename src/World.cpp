@@ -57,12 +57,6 @@ namespace Redland {
   }
 
 
-  librdf_world* World::world()
-  {
-    return cobj();
-  }
-
-
   void World::reset_error() throw()
   {
     error_ = "";
@@ -85,7 +79,7 @@ namespace Redland {
       throw Exception("Cannot get NULL world feature");
     
     librdf_node* node;
-    node = librdf_world_get_feature(world(), f->uri());
+    node = librdf_world_get_feature(cobj(), f->cobj());
     if(node == NULL)
       throw Exception("Cannot get world feature "+f->str());
 
@@ -101,7 +95,7 @@ namespace Redland {
     if(v == NULL)
       throw Exception("Cannot set world feature " + f->str() + " to NULL value");
     
-    int rc = librdf_world_set_feature(world(), f->uri(), v->node());
+    int rc = librdf_world_set_feature(cobj(), f->cobj(), v->cobj());
     if(rc)
       throw Exception("Set world feature " + f->str() + " failed");
   }

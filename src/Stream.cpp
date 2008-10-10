@@ -47,18 +47,12 @@ namespace Redland {
   }
   
 
-  librdf_stream* Stream::stream() const
-  {
-    return obj_;
-  }
-
-
   Stream::~Stream()
   {
   }
 
 
-  const string Stream::str()
+  const string Stream::str() const
     throw()
   {
     return "Stream";

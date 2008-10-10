@@ -47,7 +47,7 @@ namespace Redland {
       world_(w),
       name_(n)
   {
-    obj_ = librdf_new_parser(w->world(), name_.c_str(), NULL, NULL);
+    obj_ = librdf_new_parser(w->cobj(), name_.c_str(), NULL, NULL);
     if (obj_ == NULL)
       throw Exception("Failed to create parser " + name_);
 
@@ -80,7 +80,7 @@ namespace Redland {
 
     name_ = name_str;
     
-    obj_ = librdf_new_parser(w->world(), name_.c_str(), NULL, NULL);
+    obj_ = librdf_new_parser(w->cobj(), name_.c_str(), NULL, NULL);
     if (obj_ == NULL)
       throw Exception("Failed to create parser for content");
   }
@@ -126,7 +126,7 @@ namespace Redland {
     librdf_stream *stream;
     stream = librdf_parser_parse_string_as_stream(obj_,
                                                   (const unsigned char*)s.c_str(),
-                                                  base_uri->uri());
+                                                  base_uri->cobj());
     world_->check_and_throw();
     if(stream == NULL)
       throw Exception("Failed to parse string");
@@ -138,9 +138,9 @@ namespace Redland {
   Stream* Parser::parseUri(Uri* uri, Uri* base_uri = NULL)
     throw(Exception)
   {
-    librdf_uri* buri = (base_uri != NULL) ? base_uri->uri() : NULL;
+    librdf_uri* buri = (base_uri != NULL) ? base_uri->cobj() : NULL;
     librdf_stream* stream;
-    stream = librdf_parser_parse_as_stream(obj_, uri->uri(), buri);
+    stream = librdf_parser_parse_as_stream(obj_, uri->cobj(), buri);
     world_->check_and_throw();
     if(stream == NULL)
       throw Exception("Failed to parse URI " + uri->str());

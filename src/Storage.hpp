@@ -45,8 +45,8 @@ namespace Redland {
 
   class Storage : public Wrapper<librdf_storage> {
     public:
-    Storage(World* w, const string sn, const string n="", const string opts="") throw(Exception);
-    Storage(World& w, const string sn, const string n="", const string opts="") throw(Exception);
+    Storage(World* w, const string& sn, const string& n="", const string& opts="") throw(Exception);
+    Storage(World& w, const string& sn, const string& n="", const string& opts="") throw(Exception);
 
     ~Storage();
 
@@ -54,8 +54,6 @@ namespace Redland {
     const string name() const;
 
     const string str() const;
-
-    librdf_storage* storage() const;
 
   protected:
     World* world_;

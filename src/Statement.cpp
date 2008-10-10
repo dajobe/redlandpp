@@ -47,13 +47,13 @@ namespace Redland {
                                          (librdf_statement*)s),
     world_(w)
   {
-    subject = makeNode(world_,
+    subject_ = makeNode(world_,
                        librdf_statement_get_predicate((librdf_statement*)s));
-    predicate = makeNode(world_,
+    predicate_ = makeNode(world_,
                          librdf_statement_get_predicate((librdf_statement*)s));
-    object = makeNode(world_,
+    object_ = makeNode(world_,
                       librdf_statement_get_object((librdf_statement*)s));
-    context = NULL;
+    context_ = NULL;
   }
 
 
@@ -65,30 +65,26 @@ namespace Redland {
 
   Statement::~Statement()
   {
-    if(subject != NULL)
-      delete subject;
-    if(predicate != NULL)
-      delete predicate;
-    if(object != NULL)
-      delete object;
-    if(context != NULL)
-      delete context;
+    delete subject_;
+    delete predicate_;
+    delete object_;
+    delete context_;
   }
 
 
   ostream& operator<< (ostream& os, const Statement& s)
   {
-    return os << "["  << s.subject->str()
-              << ", " << s.predicate->str()
-              << ", " << s.object->str()
+    return os << "["  << s.subject()->str()
+              << ", " << s.predicate()->str()
+              << ", " << s.object()->str()
               << "]";
   }
 
   ostream& operator<< (ostream& os, const Statement* s)
   {
-    return os << "["  << s->subject->str()
-              << ", " << s->predicate->str()
-              << ", " << s->object->str()
+    return os << "["  << s->subject()->str()
+              << ", " << s->predicate()->str()
+              << ", " << s->object()->str()
               << "]";
   }
 

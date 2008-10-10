@@ -41,19 +41,17 @@ namespace Redland {
 
   using namespace std;
 
-  class Stream
-    : public Wrapper<librdf_stream>
+  class Stream : public Wrapper<librdf_stream>
   {
     public:
       Stream(World* w, librdf_stream* s);
 
       ~Stream();
 
-      librdf_stream* stream() const;
-      
-      const string str() throw();
+      const string str() const throw();
 
       // redland Statement iterators
+      // FIXME: powerfully anti-C++, iterators should be separate
       Statement* get() const;
       bool next() const;
       

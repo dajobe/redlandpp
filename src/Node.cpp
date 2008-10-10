@@ -48,19 +48,13 @@ namespace Redland {
   {
   }
   
-
-  librdf_node* Node::node() const
-  {
-    return obj_;
-  }
-
-
   Node::~Node()
   {
   }
 
 
-  Node* makeNode(World* w, librdf_node* n) throw(Exception)
+  Node* makeNode(World* w, librdf_node* n)
+    throw(Exception)
   {
     Node* node=NULL;
     
@@ -92,7 +86,7 @@ namespace Redland {
   }
 
 
-  const string Node::str()
+  const string& Node::str() const
   {
     if(str_.size() == 0)
       str_ = makeStr();
@@ -102,97 +96,94 @@ namespace Redland {
 
   LiteralNode::LiteralNode(World* w, librdf_node* n)
     throw(Exception)
-    : Node(w), value(""), language(""), datatype(NULL)
+    : Node(w), datatype_(NULL)
   {
     obj_ = librdf_new_node_from_node(n);
 
     const char* value_str = (const char*)librdf_node_get_literal_value(n);
-    value = value_str;
+    value_ = value_str;
     
     const char* language_str = (const char*)librdf_node_get_literal_value_language(n);
     if(language_str)
-      language = language_str;
+      language_ = language_str;
     
     librdf_uri* datatype_uri = librdf_node_get_literal_value_datatype_uri(n);
     if(datatype_uri != NULL)
-      datatype = new Uri(w, datatype_uri);
+      datatype_ = new Uri(w, datatype_uri);
   }
 
 
   LiteralNode::LiteralNode(World* w, string v, string l, Uri* d)
     throw(Exception)
-    : Node(w), value(v), language(l), datatype(d)
+    : Node(w), value_(v), language_(l), datatype_(d)
   {
-    const unsigned char* value_str;
-    value_str = (const unsigned char*)value.c_str();
+    const unsigned char* value_str = (const unsigned char*)value_.c_str();
     
     const char* language_str=NULL;
-    if(language.size() > 0)
-      language_str = language.c_str();
+    if(language_.size() > 0)
+      language_str = language_.c_str();
 
     librdf_uri* datatype_uri=NULL;
-    if(datatype != NULL)
-      datatype_uri = datatype->uri();
+    if(datatype_ != NULL)
+      datatype_uri = datatype_->cobj();
     
-    obj_ = librdf_new_node_from_typed_literal(w->world(),
+    obj_ = librdf_new_node_from_typed_literal(w->cobj(),
                                               value_str, language_str,
                                               datatype_uri);
     if(obj_ == NULL)
-      throw Exception("Failed to create node from literal " + value);
+      throw Exception("Failed to create node from literal " + value_);
   }
 
 
   LiteralNode::~LiteralNode()
   {
-    if(datatype != NULL)
-      delete datatype;
+    if(datatype_ != NULL)
+      delete datatype_;
   }
   
 
-  string LiteralNode::makeStr()
+  const string LiteralNode::makeStr() const
   {
-    string s = "\"" + value + "\"";
-    if(language.size() > 0)
-      s.append("@" + language);
-    if(datatype != NULL)
-      s.append("^^<" + datatype->str() + ">");
+    string s = "\"" + value_ + "\"";
+    if(language_.size() > 0)
+      s.append("@" + language_);
+    if(datatype_ != NULL)
+      s.append("^^<" + datatype_->str() + ">");
 
     return s;
   }
 
 
-  UriNode::UriNode(World* w, Uri* u) 
-    throw()
-    : Node(w), value(u)
+  UriNode::UriNode(World* w, Uri* u) throw()
+    : Node(w), value_(u)
   {
   }
 
 
-  UriNode::UriNode(World* w, librdf_node* n) 
-    throw(Exception)
-    : Node(w), value(NULL)
+  UriNode::UriNode(World* w, librdf_node* n) throw(Exception)
+    : Node(w)
   {
-    obj_ = librdf_new_node_from_node(n);
-    value = new Uri(w, librdf_node_get_uri(obj_));
+    obj_   = librdf_new_node_from_node(n);
+    value_ = new Uri(w, librdf_node_get_uri(obj_));
   }
 
 
   UriNode::~UriNode()
   {
-    if(value != NULL)
-      delete value;
+    if(value_ != NULL)
+      delete value_;
   }
   
 
-  string UriNode::makeStr()
+  const string UriNode::makeStr() const
   {
-    return "<" + value->str() + ">";
+    return "<" + value_->str() + ">";
   }
 
 
   BlankNode::BlankNode(World* w, const char* i)
     throw()
-    : Node(w), id(i)
+    : Node(w), id_(i)
   {
   }
 
@@ -202,13 +193,13 @@ namespace Redland {
     : Node(w)
   {
     const char* id_str = (const char*)librdf_node_get_blank_identifier(n);
-    id = string(id_str);
+    id_ = string(id_str);
   }
 
 
-  string BlankNode::makeStr()
+  const string BlankNode::makeStr() const
   {
-    return "_:" + id;
+    return "_:" + id_;
   }
 
 

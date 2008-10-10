@@ -36,12 +36,12 @@ namespace Redland {
   using namespace std;
 
 
-  Uri::Uri(World* w, const std::string s) throw(Exception)
+  Uri::Uri(World* w, const std::string& s) throw(Exception)
     : Redland::Wrapper<librdf_uri>((redland_object_free*)librdf_free_uri,
                                    NULL),
     world_(w)
   {
-    obj_ = librdf_new_uri(world_->world(), (const unsigned char*)s.c_str());
+    obj_ = librdf_new_uri(world_->cobj(), (const unsigned char*)s.c_str());
     if(obj_ == NULL)
       throw Exception("Failed to create uri " + s);
   }
@@ -60,12 +60,6 @@ namespace Redland {
   
   Uri::~Uri()
   {
-  }
-  
-  
-  librdf_uri* Uri::uri() const
-  {
-    return (librdf_uri*)obj_;
   }
     
   

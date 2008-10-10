@@ -45,8 +45,6 @@ namespace Redland {
       // destructor
       ~World();
 
-      librdf_world* world();
-
       Node* feature(Uri* feature) throw(Exception);
       void setFeature(Uri* feature, Node* value) throw(Exception);
 

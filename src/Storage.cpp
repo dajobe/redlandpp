@@ -53,7 +53,7 @@ namespace Redland {
     if(options_.size() > 0)
       options_str = options_.c_str();
     
-    obj_ = librdf_new_storage(world_->world(), storage_name_str, name_str,
+    obj_ = librdf_new_storage(world_->cobj(), storage_name_str, name_str,
                               options_str);
     if (obj_ == NULL)
       throw Exception("Failed to create storage " + storage_name_ + " with name " + name_ + " and options " + options_);
@@ -62,8 +62,8 @@ namespace Redland {
   }
   
 
-  Storage::Storage(World* w, const string sn, const string n,
-                   const string opts)
+  Storage::Storage(World* w, const string& sn, const string& n,
+                   const string& opts)
     throw(Exception)
     : Redland::Wrapper<librdf_storage>((redland_object_free*)librdf_free_storage,
                                        NULL),
@@ -76,8 +76,8 @@ namespace Redland {
   }
 
 
-  Storage::Storage(World& w, const string sn, const string n,
-                   const string opts)
+  Storage::Storage(World& w, const string& sn, const string& n,
+                   const string& opts)
     throw(Exception)
     : Redland::Wrapper<librdf_storage>((redland_object_free*)librdf_free_storage,
                                        NULL),
@@ -87,12 +87,6 @@ namespace Redland {
       options_(opts)
   {
     init();
-  }
-
-
-  librdf_storage* Storage::storage() const
-  {
-    return obj_;
   }
 
 

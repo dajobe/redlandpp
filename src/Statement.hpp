@@ -42,10 +42,15 @@ namespace Redland {
 
   class Statement : public Wrapper<librdf_statement> {
     public:
-      Node* subject;
-      Node* predicate;
-      Node* object;
-      Node* context;
+      Node* subject()   { return subject_; }
+      Node* predicate() { return predicate_; }
+      Node* object()    { return object_; }
+      Node* context()   { return context_; }
+
+      const Node* subject()   const { return subject_; }
+      const Node* predicate() const { return predicate_; }
+      const Node* object()    const { return object_; }
+      const Node* context()   const { return context_; }
 
       ~Statement();
 
@@ -53,6 +58,10 @@ namespace Redland {
 
     private:
       World* world_;
+      Node* subject_;
+      Node* predicate_;
+      Node* object_;
+      Node* context_;
       
       Statement();
       Statement(World* w, const librdf_statement* s);

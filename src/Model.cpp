@@ -50,7 +50,7 @@ namespace Redland {
     if(opts.size() > 0)
       options_ = opts.c_str();
 
-    obj_ = librdf_new_model(world_->world(), storage_->storage(), options_str);
+    obj_ = librdf_new_model(world_->cobj(), storage_->cobj(), options_str);
     if (obj_ == NULL)
       throw Exception("Failed to create model with storage " + storage_->str());
 
@@ -77,12 +77,6 @@ namespace Redland {
       storage_(&s)
   {
     init(opts);
-  }
-
-
-  librdf_model* Model::model() const
-  {
-    return obj_;
   }
 
 
@@ -114,7 +108,7 @@ namespace Redland {
     if(s == NULL)
       throw Exception("Cannot add NULL statement");
 
-    int rc=librdf_model_add_statement(model(), s->statement());
+    int rc=librdf_model_add_statement(cobj(), s->statement());
     if(rc)
       throw Exception("Failed to add statement");
   }
@@ -125,15 +119,15 @@ namespace Redland {
     if(st == NULL)
       throw Exception("Cannot add statements from NULL stream");
 
-    int rc=librdf_model_add_statements(model(), st->stream());
+    int rc=librdf_model_add_statements(cobj(), st->cobj());
     if(rc)
       throw Exception("Failed to add statements from stream");
   }
 
-
-  int Model::size() const
+  // FIXME: unfortunately not const because librdf_model_size isn't
+  int Model::size()
   {
-    return librdf_model_size(model());
+    return librdf_model_size(cobj());
   }
 
 

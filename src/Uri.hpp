@@ -40,10 +40,10 @@ namespace Redland {
 
   class World;
   
-  class Uri : Wrapper<librdf_uri> {
+  class Uri : public Wrapper<librdf_uri> {
     public:
       // public constructors
-      Uri(World* world, const string str) throw(Exception);
+      Uri(World* world, const std::string& str) throw(Exception);
       Uri(World* world, librdf_uri* uri) throw(Exception);
 
       // public destructor
@@ -51,10 +51,6 @@ namespace Redland {
 
       // public methods
       const string str() const;
-
-      librdf_uri* uri() const;
-
-    protected:
 
     private:
       World* world_;

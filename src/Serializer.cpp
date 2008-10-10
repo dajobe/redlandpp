@@ -54,9 +54,9 @@ namespace Redland {
 
     librdf_uri* uri_obj = NULL;
     if(u != NULL)
-      uri_obj=u->uri();
+      uri_obj=u->cobj();
     
-    obj_ = librdf_new_serializer(w->world(), name_.c_str(), mt_str, uri_obj);
+    obj_ = librdf_new_serializer(w->cobj(), name_.c_str(), mt_str, uri_obj);
     if (obj_ == NULL)
       throw Exception("Failed to create serializer " + name_);
 
