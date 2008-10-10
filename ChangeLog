@@ -1,4 +1,129 @@
+2008-10-10  Dave Robillard <dave@drobilla.net>
+
+	* src/Model.cpp, src/Model.hpp, src/Node.cpp, src/Node.hpp,
+	src/Parser.cpp, src/Serializer.cpp, src/Statement.cpp,
+	src/Statement.hpp, src/Storage.cpp, src/Storage.hpp,
+	src/Stream.cpp, src/Stream.hpp, src/Uri.cpp, src/Uri.hpp,
+	src/World.cpp, src/World.hpp: Fix const-correctness for all
+	classes.
+	Avoid unnecessary string copy overhead (pass const and/or by
+	reference).
+	Remove redundant librdf object getter for every wrapper class
+	(Wrapper::cobj is identical).
+
+2008-09-16  Dave Beckett <dave@dajobe.org>
+
+	* utils/rdfprocpp.cpp: Use copyright method
+
+	* src/World.cpp, src/World.hpp: Added static version and copyright
+	methods
+
+	* src/World.cpp, src/World.hpp: Added feature/setFeature methods
+
+	* src/Statement.cpp: Forward declare World class
+
+	* src/Uri.cpp, src/Uri.hpp: Forward declare World class
+
+	* src/Node.cpp, src/Node.hpp: Added Node::node()
+
 2008-09-14  Dave Beckett <dave@dajobe.org>
+
+	* utils/rdfprocpp.cpp: Use reference constructors
+
+	* src/Model.cpp, src/Model.hpp: Add init() and reference constructor
+
+	* src/Storage.cpp, src/Storage.hpp: Made init() throw
+
+	* src/Storage.cpp: Add init()
+	Add World& consructors using init()
+
+	* src/Storage.hpp: Add World& consructors
+
+	* utils/rdfprocpp.cpp: Use world var
+
+	* utils/rdfprocpp.cpp: Parse into model and count
+
+	* src/Model.cpp, src/Model.hpp: Add Model::size
+
+	* utils/rdfprocpp.cpp: Make a memory storage and model
+
+	* src/Model.cpp, src/Model.hpp, src/Storage.cpp, src/Storage.hpp:
+	Default args for Model and Storage classes
+
+	* src/Storage.cpp: fix
+
+	* src/Storage.cpp: (Storage::Storage,
+	MemoryStorage::MemoryStorage): Set default args.
+
+	* src/Redland.hpp: add new classes
+
+	* src/Stream.cpp: (Stream::get): Copy statement/add ref before
+	constructing Statement.
+
+	* src/Statement.cpp: revert that
+
+	* src/Statement.cpp: (Statement::Statement): Copy/add ref to
+	librdf_statement* and store.
+
+	* src/Storage.cpp: syntax
+
+	* src/Makefile.am: Add Storage
+
+	* src/Model.hpp, src/Parser.hpp, src/Storage.cpp, src/Storage.hpp,
+	src/Uri.hpp: Includes
+
+	* src/Storage.cpp: ws
+
+	* src/Storage.hpp: no need for friend class Model
+
+	* src/Storage.hpp: friend class Model
+
+	* src/Storage.cpp: ws
+
+	* src/Statement.cpp: Added Statement::statement()
+
+	* src/Statement.cpp, src/Storage.cpp: Added Statement::statement()
+
+	* src/Storage.cpp, src/Storage.hpp: Added MemoryStorage class
+
+	* src/Model.cpp, src/Model.hpp: Added add() methods
+
+	* src/Statement.cpp, src/Statement.hpp: Statement now wraps a
+	librdf_statement*
+
+	* src/Stream.cpp, src/Stream.hpp: Stream adds stream() method
+
+	* src/Model.cpp, src/Node.cpp, src/Serializer.cpp,
+	src/Storage.cpp: doc comments
+
+	* src/Exception.cpp, src/Exception.hpp, src/Log.hpp,
+	src/Model.hpp, src/Node.hpp, src/Parser.hpp, src/Redland.hpp,
+	src/Statement.cpp, src/Statement.hpp, src/Storage.hpp,
+	src/Stream.cpp, src/Stream.hpp, src/Uri.cpp, src/Uri.hpp,
+	src/World.hpp: doc comments
+
+	* src/Makefile.am, src/Model.cpp, src/Model.hpp, src/Parser.cpp,
+	src/Storage.cpp, src/Storage.hpp, src/World.hpp: Added Model and
+	Storage
+
+	* src/Makefile.am, src/Serializer.cpp, src/Serializer.hpp,
+	src/World.hpp: Added Serializer
+
+	* src/Parser.cpp: comments
+
+	* utils/rdfprocpp.cpp: copyright
+
+	* configure.ac: No F77
+
+	* src/World.cpp, src/Wrapper.hpp: Use cobj()
+
+	* src/Node.cpp: code style
+
+	* src/Node.cpp, src/Node.hpp: Code tidy and declare more exceptions
+
+	* src/Parser.cpp: style
+
+	* src/Uri.hpp: docs
 
 	* utils/Makefile.am, utils/rdfprocpp.cc, utils/rdfprocpp.cpp (from
 	/trunk/utils/rdfprocpp.cc:76): Rename to .cpp to match ../src
