@@ -30,9 +30,9 @@
 
 #include <redland.h>
 
-#include <World.hpp>
-#include <Stream.hpp>
-#include <Stream.hpp>
+#include "redlandpp/World.hpp"
+#include "redlandpp/Stream.hpp"
+#include "redlandpp/Stream.hpp"
 
 
 namespace Redland {

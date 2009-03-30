@@ -26,9 +26,9 @@
 #include <redlandpp_config.h>
 #endif
 
-#include <World.hpp>
-#include <Exception.hpp>
-#include <Node.hpp>
+#include "redlandpp/World.hpp"
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/Node.hpp"
 
 
 namespace Redland {

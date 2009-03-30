@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Exception.hpp - Redland++ Exception class interface
+ * Serializer.cpp - Redland C++ Serializer class
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -21,31 +21,42 @@
  * 
  */
 
-#ifndef REDLANDPP_EXCEPTION_H
-#define REDLANDPP_EXCEPTION_H
+#ifndef REDLANDPP_SERIALIZER_HPP
+#define REDLANDPP_SERIALIZER_HPP
 
-#include <string>
-#include <stdexcept>
+#ifdef HAVE_CONFIG_H
+#include <redlandpp_config.h>
+#endif
 
-#include <redland.h>
-
-#include <Log.hpp>
+#include "redlandpp/World.hpp"
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/Wrapper.hpp"
+#include "redlandpp/Stream.hpp"
+#include "redlandpp/Uri.hpp"
 
 namespace Redland {
 
-  class Exception : std::exception
-  {
+  class Serializer : public Wrapper<librdf_serializer> {
   public:
-    Exception(std::string message) throw();
-    Exception(Log* log) throw();
+    Serializer(World* w, const std::string name, std::string mime_type, Uri* uri) throw(Exception);
 
-    ~Exception() throw();
+    ~Serializer();
 
-    const char* what() const throw();
+    // public methods
+    const std::string name() const;
+
+    const std::string str() const;
+
+    librdf_serializer* serializer() const;
+
+  protected:
+    World* world_;
 
   private:
-	std::string message_;
-    Log*        log_;
+    std::string name_;
+
+    friend std::ostream& operator<< (std::ostream& os, const Serializer& p);
+    friend std::ostream& operator<< (std::ostream& os, const Serializer* p);
   };
 
 } // namespace Redland

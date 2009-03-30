@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Stream.hpp - Redland++ Stream class interface
+ * Exception.hpp - Redland++ Exception class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -21,40 +21,31 @@
  * 
  */
 
-#ifndef REDLANDPP_STREAM_HH
-#define REDLANDPP_STREAM_HH
+#ifndef REDLANDPP_EXCEPTION_HPP
+#define REDLANDPP_EXCEPTION_HPP
 
 #include <string>
-#include <iterator>
+#include <stdexcept>
 
 #include <redland.h>
 
-#include <Exception.hpp>
-#include <World.hpp>
-#include <Wrapper.hpp>
-#include <Stream.hpp>
-#include <Statement.hpp>
+#include "redlandpp/Log.hpp"
 
 namespace Redland {
 
-  class Stream : public Wrapper<librdf_stream>
+  class Exception : std::exception
   {
   public:
-    Stream(World* w, librdf_stream* s);
-    ~Stream();
+    Exception(std::string message) throw();
+    Exception(Log* log) throw();
 
-    const std::string str() const throw();
+    ~Exception() throw();
 
-    // redland Statement iterators
-    // FIXME: powerfully anti-C++, iterators should be separate
-    Statement* get() const;
-    bool       next() const;
-    
-  protected:
-    World* world_;
+    const char* what() const throw();
 
   private:
-    friend std::ostream& operator<< (std::ostream& os, const Stream& s);
+	std::string message_;
+    Log*        log_;
   };
 
 } // namespace Redland

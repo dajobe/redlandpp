@@ -26,10 +26,9 @@
 #include <redlandpp_config.h>
 #endif
 
-#include <Exception.hpp>
-
-#include <Uri.hpp>
-#include <Statement.hpp>
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/Statement.hpp"
+#include "redlandpp/Uri.hpp"
 
 
 namespace Redland {

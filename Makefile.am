@@ -20,7 +20,7 @@
 # 
 # 
 
-SUBDIRS= src utils
+SUBDIRS= src redlandpp utils
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = redlandpp.pc

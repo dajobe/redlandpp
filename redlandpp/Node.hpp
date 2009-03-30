@@ -21,17 +21,17 @@
  * 
  */
 
-#ifndef REDLANDPP_NODE_HH
-#define REDLANDPP_NODE_HH
+#ifndef REDLANDPP_NODE_HPP
+#define REDLANDPP_NODE_HPP
 
 #include <string>
 
 #include <redland.h>
 
-#include <Exception.hpp>
-#include <World.hpp>
-#include <Uri.hpp>
-#include <Wrapper.hpp>
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/World.hpp"
+#include "redlandpp/Uri.hpp"
+#include "redlandpp/Wrapper.hpp"
 
 namespace Redland {
 

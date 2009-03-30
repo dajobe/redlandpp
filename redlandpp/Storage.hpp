@@ -21,8 +21,8 @@
  * 
  */
 
-#ifndef REDLANDPP_STORAGE_HH
-#define REDLANDPP_STORAGE_HH
+#ifndef REDLANDPP_STORAGE_HPP
+#define REDLANDPP_STORAGE_HPP
 
 #ifdef HAVE_CONFIG_H
 #include <redlandpp_config.h>
@@ -30,11 +30,11 @@
 
 #include <redland.h>
 
-#include <World.hpp>
-#include <Exception.hpp>
-#include <Wrapper.hpp>
-#include <Stream.hpp>
-#include <Uri.hpp>
+#include "redlandpp/World.hpp"
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/Wrapper.hpp"
+#include "redlandpp/Stream.hpp"
+#include "redlandpp/Uri.hpp"
 
 namespace Redland {
 

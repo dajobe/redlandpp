@@ -30,12 +30,12 @@
 
 #include <redland.h>
 
-#include <Exception.hpp>
-#include <World.hpp>
-#include <Wrapper.hpp>
-#include <Storage.hpp>
-#include <Stream.hpp>
-#include <Model.hpp>
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/World.hpp"
+#include "redlandpp/Wrapper.hpp"
+#include "redlandpp/Storage.hpp"
+#include "redlandpp/Stream.hpp"
+#include "redlandpp/Model.hpp"
 
 
 namespace Redland {

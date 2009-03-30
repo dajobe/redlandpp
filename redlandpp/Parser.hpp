@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Model.cpp - Redland C++ Model class interface
+ * Parser.cpp - Redland C++ Parser class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -21,8 +21,10 @@
  * 
  */
 
-#ifndef REDLANDPP_MODEL_HH
-#define REDLANDPP_MODEL_HH
+#ifndef REDLANDPP_PARSER_HPP
+#define REDLANDPP_PARSER_HPP
+
+#include <string>
 
 #ifdef HAVE_CONFIG_H
 #include <redlandpp_config.h>
@@ -30,40 +32,36 @@
 
 #include <redland.h>
 
-#include <World.hpp>
-#include <Exception.hpp>
-#include <Wrapper.hpp>
-#include <Stream.hpp>
-#include <Uri.hpp>
+#include "redlandpp/World.hpp"
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/Wrapper.hpp"
+#include "redlandpp/Stream.hpp"
+#include "redlandpp/Uri.hpp"
 
 namespace Redland {
 
-  class Model : public Wrapper<librdf_model> {
+  class Parser : public Wrapper<librdf_parser> {
   public:
-    Model(World* w, Storage* s, const std::string opts="") throw(Exception);
-    Model(World& w, Storage& s, const std::string opts="") throw(Exception);
+    Parser(World* w, const std::string name) throw(Exception);
+    Parser(World* w, Uri* uri, std::string mime_type, const std::string buffer, const std::string identifier) throw(Exception);
+    ~Parser();
 
-    ~Model();
-
-    // public methods
+    const std::string name() const;
     const std::string str() const;
 
-    void add(Statement* s) throw(Exception);
-    void add(Stream* st) throw(Exception);
+    librdf_parser* parser() const;
 
-    int size();
-    
+    Stream* parseString(std::string str, Uri* uri, Uri* base_uri) throw(Exception);
+    Stream* parseUri(Uri* uri, Uri* base_uri) throw(Exception);
+
   protected:
     World* world_;
 
   private:
-    Storage*    storage_;
-	std::string options_;
+    std::string name_;
 
-    void init(const std::string opts) throw(Exception);
-    
-    friend std::ostream& operator<< (std::ostream& os, const Model& p);
-    friend std::ostream& operator<< (std::ostream& os, const Model* p);
+    friend std::ostream& operator<< (std::ostream& os, const Parser& p);
+    friend std::ostream& operator<< (std::ostream& os, const Parser* p);
   };
 
 } // namespace Redland

@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Uri.hpp - Redland++ Uri class interface
+ * Redland.hpp - Redland C++ class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -21,40 +21,20 @@
  * 
  */
 
-#ifndef REDLANDPP_URI_HH
-#define REDLANDPP_URI_HH
 
-#include <string>
-#include <ostream>
+#ifndef REDLANDPP_HPP
+#define REDLANDPP_HPP
 
 #include <redland.h>
 
-#include <Exception.hpp>
-#include <Wrapper.hpp>
-
-namespace Redland {
-
-  class World;
-  
-  class Uri : public Wrapper<librdf_uri> {
-  public:
-    // public constructors
-    Uri(World* world, const std::string& str) throw(Exception);
-    Uri(World* world, librdf_uri* uri) throw(Exception);
-
-    // public destructor
-    ~Uri();
-
-    // public methods
-    const std::string str() const;
-
-  private:
-    World* world_;
-
-    friend std::ostream& operator<< (std::ostream& os, const Uri& uri);
-    friend std::ostream& operator<< (std::ostream& os, const Uri* uri);
-  };
-
-} // namespace Redland
+#include "redlandpp/Wrapper.hpp"
+#include "redlandpp/World.hpp"
+#include "redlandpp/Uri.hpp"
+#include "redlandpp/Node.hpp"
+#include "redlandpp/Statement.hpp"
+#include "redlandpp/Parser.hpp"
+#include "redlandpp/Serializer.hpp"
+#include "redlandpp/Storage.hpp"
+#include "redlandpp/Model.hpp"
 
 #endif

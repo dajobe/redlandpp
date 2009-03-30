@@ -28,12 +28,9 @@
 
 #include <redland.h>
 
-#include <Exception.hpp>
-
-#include <redland.h>
-
-#include <Statement.hpp>
-#include <Node.hpp>
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/Node.hpp"
+#include "redlandpp/Statement.hpp"
 
 namespace Redland {
 

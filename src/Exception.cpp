@@ -24,8 +24,8 @@
 
 #include <string>
 
-#include <Exception.hpp>
-#include <Log.hpp>
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/Log.hpp"
 
 namespace Redland {
 

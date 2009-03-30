@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Serializer.cpp - Redland C++ Serializer class
+ * Stream.hpp - Redland++ Stream class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -21,42 +21,40 @@
  * 
  */
 
-#ifndef REDLANDPP_SERIALIZER_HH
-#define REDLANDPP_SERIALIZER_HH
+#ifndef REDLANDPP_STREAM_HPP
+#define REDLANDPP_STREAM_HPP
 
-#ifdef HAVE_CONFIG_H
-#include <redlandpp_config.h>
-#endif
+#include <string>
+#include <iterator>
 
-#include <World.hpp>
-#include <Exception.hpp>
-#include <Wrapper.hpp>
-#include <Stream.hpp>
-#include <Uri.hpp>
+#include <redland.h>
+
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/World.hpp"
+#include "redlandpp/Wrapper.hpp"
+#include "redlandpp/Stream.hpp"
+#include "redlandpp/Statement.hpp"
 
 namespace Redland {
 
-  class Serializer : public Wrapper<librdf_serializer> {
+  class Stream : public Wrapper<librdf_stream>
+  {
   public:
-    Serializer(World* w, const std::string name, std::string mime_type, Uri* uri) throw(Exception);
+    Stream(World* w, librdf_stream* s);
+    ~Stream();
 
-    ~Serializer();
+    const std::string str() const throw();
 
-    // public methods
-    const std::string name() const;
-
-    const std::string str() const;
-
-    librdf_serializer* serializer() const;
-
+    // redland Statement iterators
+    // FIXME: powerfully anti-C++, iterators should be separate
+    Statement* get() const;
+    bool       next() const;
+    
   protected:
     World* world_;
 
   private:
-    std::string name_;
-
-    friend std::ostream& operator<< (std::ostream& os, const Serializer& p);
-    friend std::ostream& operator<< (std::ostream& os, const Serializer* p);
+    friend std::ostream& operator<< (std::ostream& os, const Stream& s);
   };
 
 } // namespace Redland

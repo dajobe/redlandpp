@@ -1,6 +1,6 @@
 /* -*- Mode: c; c-basic-offset: 2 -*-
  *
- * Log.hpp - Redland++ Log class interface
+ * Uri.hpp - Redland++ Uri class interface
  *
  * Copyright (C) 2008, David Beckett http://www.dajobe.org/
  * 
@@ -21,41 +21,38 @@
  * 
  */
 
-#ifndef REDLANDPP_LOG_H
-#define REDLANDPP_LOG_H
+#ifndef REDLANDPP_URI_HPP
+#define REDLANDPP_URI_HPP
 
 #include <string>
+#include <ostream>
+
 #include <redland.h>
+
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/Wrapper.hpp"
 
 namespace Redland {
 
-  class Log {
+  class World;
+  
+  class Uri : public Wrapper<librdf_uri> {
   public:
-    Log(librdf_log_message *log) throw();
+    // public constructors
+    Uri(World* world, const std::string& str) throw(Exception);
+    Uri(World* world, librdf_uri* uri) throw(Exception);
 
-    ~Log() throw();
+    // public destructor
+    ~Uri();
 
-    std::string str() throw();
-
-    int code; ///< Error code
-
-    librdf_log_level    level;
-    librdf_log_facility facility;
-
-    std::string message;
-
-    // Fields from raptor_locator* locator:
-
-    void* uri; // Uri *uri;
-
-    std::string file;
-
-    int line;
-    int column;
-    int byte;  
+    // public methods
+    const std::string str() const;
 
   private:
-    friend std::ostream& operator<< (std::ostream& os, const Log& o);
+    World* world_;
+
+    friend std::ostream& operator<< (std::ostream& os, const Uri& uri);
+    friend std::ostream& operator<< (std::ostream& os, const Uri* uri);
   };
 
 } // namespace Redland

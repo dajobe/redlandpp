@@ -21,18 +21,18 @@
  * 
  */
 
-#ifndef REDLANDPP_STATEMENT_HH
-#define REDLANDPP_STATEMENT_HH
+#ifndef REDLANDPP_STATEMENT_HPP
+#define REDLANDPP_STATEMENT_HPP
 
 #include <string>
 
 #include <redland.h>
 
-#include <Exception.hpp>
-#include <World.hpp>
-#include <Uri.hpp>
-#include <Node.hpp>
-#include <Wrapper.hpp>
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/World.hpp"
+#include "redlandpp/Uri.hpp"
+#include "redlandpp/Node.hpp"
+#include "redlandpp/Wrapper.hpp"
 
 namespace Redland {
 

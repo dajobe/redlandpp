@@ -26,12 +26,13 @@
 
 #include <redland.h>
 
-#include <Exception.hpp>
-#include <Wrapper.hpp>
-#include <Uri.hpp>
-#include <Node.hpp>
+#include "redlandpp/Exception.hpp"
+#include "redlandpp/Wrapper.hpp"
+#include "redlandpp/Uri.hpp"
 
 namespace Redland {
+
+  class Node;
 
   class World : public Wrapper<librdf_world> {
     public:

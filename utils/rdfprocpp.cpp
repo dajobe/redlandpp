@@ -25,7 +25,7 @@
 #include <iostream>
 #include <string>
 
-#include <Redland.hpp>
+#include "redlandpp/Redland.hpp"
 
 using namespace std;
 
