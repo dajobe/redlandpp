@@ -21,7 +21,6 @@
  * 
  */
 
-
 #ifndef REDLANDPP_WORLD_HPP
 #define REDLANDPP_WORLD_HPP
 
@@ -34,9 +33,6 @@
 
 namespace Redland {
 
-  using namespace std;
-
-
   class World : public Wrapper<librdf_world> {
     public:
       // default constructor
@@ -48,19 +44,18 @@ namespace Redland {
       Node* feature(Uri* feature) throw(Exception);
       void setFeature(Uri* feature, Node* value) throw(Exception);
 
-      const string shortCopyrightString() const;
-      const string copyrightString() const;
-      const string versionString() const;
+      const std::string shortCopyrightString() const;
+      const std::string copyrightString() const;
+      const std::string versionString() const;
       int versionMajor() const;
       int versionMinor() const;
       int versionRelease() const;
       int versionDecimal() const;
 
     protected:
-      string error_;
+      std::string error_;
 
-      void reset_error() throw();
-
+      void reset_error()     throw();
       void check_and_throw() throw(Exception);
       
     private:
@@ -70,9 +65,7 @@ namespace Redland {
       friend class Storage;
       friend int redland_world_log_handler(void *user_data, librdf_log_message *log);
       friend std::ostream& operator<< (std::ostream& os, const World& world);
-
   };
-
 
 } // namespace Redland
 

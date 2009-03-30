@@ -21,7 +21,6 @@
  * 
  */
 
-
 #ifndef REDLANDPP_NODE_HH
 #define REDLANDPP_NODE_HH
 
@@ -34,78 +33,68 @@
 #include <Uri.hpp>
 #include <Wrapper.hpp>
 
-
 namespace Redland {
 
-  using namespace std;
-
-
   class Node: public Wrapper<librdf_node> {
-    public:
-      Node(World* world);
+  public:
+    Node(World* world);
+    virtual ~Node();
 
-      virtual ~Node();
+    const std::string& str() const;
 
-      const string& str() const;
+  protected:
+    World* world_;
 
-    protected:
-      World* world_;
+    virtual const std::string makeStr() const { return ""; };
 
-      virtual const string makeStr() const { return ""; };
+  private:
+    mutable std::string str_;
 
-    private:
-      mutable string str_;
-
-    friend ostream& operator<< (ostream& os, const Node& node);
+    friend std::ostream& operator<< (std::ostream& os, const Node& node);
   };
 
   Node* makeNode(World* world, librdf_node* n) throw(Exception);
 
 
   class LiteralNode: public Node {
-    public:
-      LiteralNode(World* w, librdf_node* n) throw(Exception);
+  public:
+    LiteralNode(World* w, librdf_node* n) throw(Exception);
+    LiteralNode(World* world, std::string value, std::string language, Uri* datatype=NULL) throw(Exception);
+    ~LiteralNode();
 
-      LiteralNode(World* world, string value, string language, Uri* datatype=NULL) throw(Exception);
+  private:
+    const std::string makeStr() const;
 
-      ~LiteralNode();
-
-    private:
-      const string makeStr() const;
-
-      string value_;
-      string language_;
-      Uri* datatype_;
+    std::string value_;
+    std::string language_;
+    Uri* datatype_;
   };
 
 
   class UriNode: public Node {
-    public:
-      UriNode(World* w, Uri* u) throw();
-      UriNode(World* w, librdf_node* n) throw(Exception);
-      
-      ~UriNode();
+  public:
+    UriNode(World* w, Uri* u) throw();
+    UriNode(World* w, librdf_node* n) throw(Exception);
+    ~UriNode();
 
-    private:
-      const string makeStr() const;
-      
-      Uri* value_;
+  private:
+    const std::string makeStr() const;
+    
+    Uri* value_;
   };
 
 
   class BlankNode: public Node {
-    public:
-      BlankNode(World* w, const char* id) throw();
-      BlankNode(World* w, librdf_node* n) throw();
+  public:
+    BlankNode(World* w, const char* id) throw();
+    BlankNode(World* w, librdf_node* n) throw();
 
-    private:
-      const string makeStr() const;
-      
-      string id_;
+  private:
+    const std::string makeStr() const;
+    
+    std::string id_;
   };
 
-
 } // namespace Redland
-
 
 #endif

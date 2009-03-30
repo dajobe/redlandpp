@@ -21,7 +21,6 @@
  * 
  */
 
-
 #ifndef REDLANDPP_URI_HH
 #define REDLANDPP_URI_HH
 
@@ -33,34 +32,29 @@
 #include <Exception.hpp>
 #include <Wrapper.hpp>
 
-
 namespace Redland {
-
-  using namespace std;
 
   class World;
   
   class Uri : public Wrapper<librdf_uri> {
-    public:
-      // public constructors
-      Uri(World* world, const std::string& str) throw(Exception);
-      Uri(World* world, librdf_uri* uri) throw(Exception);
+  public:
+    // public constructors
+    Uri(World* world, const std::string& str) throw(Exception);
+    Uri(World* world, librdf_uri* uri) throw(Exception);
 
-      // public destructor
-      ~Uri();
+    // public destructor
+    ~Uri();
 
-      // public methods
-      const string str() const;
+    // public methods
+    const std::string str() const;
 
-    private:
-      World* world_;
+  private:
+    World* world_;
 
-      friend ostream& operator<< (ostream& os, const Uri& uri);
-      friend ostream& operator<< (ostream& os, const Uri* uri);
+    friend std::ostream& operator<< (std::ostream& os, const Uri& uri);
+    friend std::ostream& operator<< (std::ostream& os, const Uri* uri);
   };
 
-
 } // namespace Redland
-
 
 #endif

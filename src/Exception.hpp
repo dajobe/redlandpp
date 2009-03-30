@@ -21,25 +21,22 @@
  * 
  */
 
-
 #ifndef REDLANDPP_EXCEPTION_H
 #define REDLANDPP_EXCEPTION_H
 
+#include <string>
 #include <stdexcept>
 
 #include <redland.h>
 
 #include <Log.hpp>
 
-
 namespace Redland {
-
-  using namespace std;
 
   class Exception : std::exception
   {
   public:
-    Exception(string message) throw();
+    Exception(std::string message) throw();
     Exception(Log* log) throw();
 
     ~Exception() throw();
@@ -47,11 +44,9 @@ namespace Redland {
     const char* what() const throw();
 
   private:
-    string message_;
-
-    Log* log_;
+	std::string message_;
+    Log*        log_;
   };
-
 
 } // namespace Redland
 

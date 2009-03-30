@@ -21,10 +21,8 @@
  * 
  */
 
-
 #ifndef REDLANDPP_STORAGE_HH
 #define REDLANDPP_STORAGE_HH
-
 
 #ifdef HAVE_CONFIG_H
 #include <redlandpp_config.h>
@@ -38,46 +36,42 @@
 #include <Stream.hpp>
 #include <Uri.hpp>
 
-
 namespace Redland {
 
-  using namespace std;
-
   class Storage : public Wrapper<librdf_storage> {
-    public:
-    Storage(World* w, const string& sn, const string& n="", const string& opts="") throw(Exception);
-    Storage(World& w, const string& sn, const string& n="", const string& opts="") throw(Exception);
+  public:
+    Storage(World* w, const std::string& sn, const std::string& n="", const std::string& opts="") throw(Exception);
+    Storage(World& w, const std::string& sn, const std::string& n="", const std::string& opts="") throw(Exception);
 
     ~Storage();
 
     // public methods
-    const string name() const;
+    const std::string name() const;
 
-    const string str() const;
+    const std::string str() const;
 
   protected:
     World* world_;
 
   private:
-    string storage_name_;
-    string name_;
-    string options_;
+    std::string storage_name_;
+    std::string name_;
+    std::string options_;
 
     void init() throw(Exception);
     
-    friend ostream& operator<< (ostream& os, const Storage& p);
-    friend ostream& operator<< (ostream& os, const Storage* p);
+    friend std::ostream& operator<< (std::ostream& os, const Storage& p);
+    friend std::ostream& operator<< (std::ostream& os, const Storage* p);
   };
 
 
   class MemoryStorage : public Storage {
     public:
-    MemoryStorage(World* w, const string n="", const string opts="") throw(Exception);
-    MemoryStorage(World& w, const string n="", const string opts="") throw(Exception);
+    MemoryStorage(World* w, const std::string n="", const std::string opts="") throw(Exception);
+    MemoryStorage(World& w, const std::string n="", const std::string opts="") throw(Exception);
 
     ~MemoryStorage();
   };
-
 
 } // namespace Redland
 

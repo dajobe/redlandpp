@@ -21,52 +21,42 @@
  * 
  */
 
-
 #ifndef REDLANDPP_LOG_H
 #define REDLANDPP_LOG_H
 
+#include <string>
 #include <redland.h>
 
 namespace Redland {
 
-  using namespace std;
-
   class Log {
-    public:
-      Log(librdf_log_message *log) throw();
+  public:
+    Log(librdf_log_message *log) throw();
 
-      ~Log() throw();
+    ~Log() throw();
 
-      string str() throw();
+    std::string str() throw();
 
-      // error code
-      int code;
+    int code; ///< Error code
 
-      librdf_log_level level;
+    librdf_log_level    level;
+    librdf_log_facility facility;
 
-      librdf_log_facility facility;
+    std::string message;
 
-      string message;
+    // Fields from raptor_locator* locator:
 
-      // Fields from raptor_locator* locator;
+    void* uri; // Uri *uri;
 
-      void* uri; // Uri *uri;
+    std::string file;
 
-      string file;
+    int line;
+    int column;
+    int byte;  
 
-      int line;
-
-      int column;
-
-      int byte;  
-
-
-    protected:
-    private:
-
-      friend std::ostream& operator<< (std::ostream& os, const Log& o);
+  private:
+    friend std::ostream& operator<< (std::ostream& os, const Log& o);
   };
-
 
 } // namespace Redland
 

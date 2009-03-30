@@ -21,10 +21,10 @@
  * 
  */
 
-
 #ifndef REDLANDPP_PARSER_HH
 #define REDLANDPP_PARSER_HH
 
+#include <string>
 
 #ifdef HAVE_CONFIG_H
 #include <redlandpp_config.h>
@@ -38,38 +38,31 @@
 #include <Stream.hpp>
 #include <Uri.hpp>
 
-
 namespace Redland {
 
-  using namespace std;
-
   class Parser : public Wrapper<librdf_parser> {
-    public:
-    Parser(World* w, const string name) throw(Exception);
-    Parser(World* w, Uri* uri, string mime_type, const string buffer, const string identifier) throw(Exception);
-
+  public:
+    Parser(World* w, const std::string name) throw(Exception);
+    Parser(World* w, Uri* uri, std::string mime_type, const std::string buffer, const std::string identifier) throw(Exception);
     ~Parser();
 
-    // public methods
-    const string name() const;
-
-    const string str() const;
+    const std::string name() const;
+    const std::string str() const;
 
     librdf_parser* parser() const;
 
-    Stream* parseString(string str, Uri* uri, Uri* base_uri) throw(Exception);
+    Stream* parseString(std::string str, Uri* uri, Uri* base_uri) throw(Exception);
     Stream* parseUri(Uri* uri, Uri* base_uri) throw(Exception);
 
   protected:
-      World* world_;
+    World* world_;
 
   private:
-    string name_;
+    std::string name_;
 
-    friend ostream& operator<< (ostream& os, const Parser& p);
-    friend ostream& operator<< (ostream& os, const Parser* p);
+    friend std::ostream& operator<< (std::ostream& os, const Parser& p);
+    friend std::ostream& operator<< (std::ostream& os, const Parser* p);
   };
-
 
 } // namespace Redland
 

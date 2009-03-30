@@ -21,10 +21,8 @@
  * 
  */
 
-
 #ifndef REDLANDPP_SERIALIZER_HH
 #define REDLANDPP_SERIALIZER_HH
-
 
 #ifdef HAVE_CONFIG_H
 #include <redlandpp_config.h>
@@ -36,34 +34,30 @@
 #include <Stream.hpp>
 #include <Uri.hpp>
 
-
 namespace Redland {
 
-  using namespace std;
-
   class Serializer : public Wrapper<librdf_serializer> {
-    public:
-    Serializer(World* w, const string name, string mime_type, Uri* uri) throw(Exception);
+  public:
+    Serializer(World* w, const std::string name, std::string mime_type, Uri* uri) throw(Exception);
 
     ~Serializer();
 
     // public methods
-    const string name() const;
+    const std::string name() const;
 
-    const string str() const;
+    const std::string str() const;
 
     librdf_serializer* serializer() const;
 
   protected:
-      World* world_;
+    World* world_;
 
   private:
-    string name_;
+    std::string name_;
 
-    friend ostream& operator<< (ostream& os, const Serializer& p);
-    friend ostream& operator<< (ostream& os, const Serializer* p);
+    friend std::ostream& operator<< (std::ostream& os, const Serializer& p);
+    friend std::ostream& operator<< (std::ostream& os, const Serializer* p);
   };
-
 
 } // namespace Redland
 

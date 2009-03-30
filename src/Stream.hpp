@@ -21,7 +21,6 @@
  * 
  */
 
-
 #ifndef REDLANDPP_STREAM_HH
 #define REDLANDPP_STREAM_HH
 
@@ -36,35 +35,28 @@
 #include <Stream.hpp>
 #include <Statement.hpp>
 
-
 namespace Redland {
-
-  using namespace std;
 
   class Stream : public Wrapper<librdf_stream>
   {
-    public:
-      Stream(World* w, librdf_stream* s);
+  public:
+    Stream(World* w, librdf_stream* s);
+    ~Stream();
 
-      ~Stream();
+    const std::string str() const throw();
 
-      const string str() const throw();
+    // redland Statement iterators
+    // FIXME: powerfully anti-C++, iterators should be separate
+    Statement* get() const;
+    bool       next() const;
+    
+  protected:
+    World* world_;
 
-      // redland Statement iterators
-      // FIXME: powerfully anti-C++, iterators should be separate
-      Statement* get() const;
-      bool next() const;
-      
-    protected:
-      World* world_;
-
-    private:
-  
-    friend ostream& operator<< (ostream& os, const Stream& s);
-
+  private:
+    friend std::ostream& operator<< (std::ostream& os, const Stream& s);
   };
 
 } // namespace Redland
-
 
 #endif

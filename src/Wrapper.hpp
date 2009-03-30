@@ -21,7 +21,6 @@
  * 
  */
 
-
 #ifndef REDLANDPP_WRAPPER_HPP
 #define REDLANDPP_WRAPPER_HPP
 
@@ -47,7 +46,7 @@ namespace Redland {
 
       typedef T cobject;
 
-      inline T* cobj() { return obj_; }
+      inline T*       cobj()       { return obj_; }
       inline const T* cobj() const { return obj_; }
       
     protected:

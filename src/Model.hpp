@@ -21,10 +21,8 @@
  * 
  */
 
-
 #ifndef REDLANDPP_MODEL_HH
 #define REDLANDPP_MODEL_HH
-
 
 #ifdef HAVE_CONFIG_H
 #include <redlandpp_config.h>
@@ -38,20 +36,17 @@
 #include <Stream.hpp>
 #include <Uri.hpp>
 
-
 namespace Redland {
 
-  using namespace std;
-
   class Model : public Wrapper<librdf_model> {
-    public:
-    Model(World* w, Storage* s, const string opts="") throw(Exception);
-    Model(World& w, Storage& s, const string opts="") throw(Exception);
+  public:
+    Model(World* w, Storage* s, const std::string opts="") throw(Exception);
+    Model(World& w, Storage& s, const std::string opts="") throw(Exception);
 
     ~Model();
 
     // public methods
-    const string str() const;
+    const std::string str() const;
 
     void add(Statement* s) throw(Exception);
     void add(Stream* st) throw(Exception);
@@ -62,15 +57,14 @@ namespace Redland {
     World* world_;
 
   private:
-    Storage* storage_;
-    string options_;
+    Storage*    storage_;
+	std::string options_;
 
-    void init(const string opts) throw(Exception);
+    void init(const std::string opts) throw(Exception);
     
-    friend ostream& operator<< (ostream& os, const Model& p);
-    friend ostream& operator<< (ostream& os, const Model* p);
+    friend std::ostream& operator<< (std::ostream& os, const Model& p);
+    friend std::ostream& operator<< (std::ostream& os, const Model* p);
   };
-
 
 } // namespace Redland
 
