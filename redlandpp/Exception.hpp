@@ -29,9 +29,9 @@
 
 #include <redland.h>
 
-#include "redlandpp/Log.hpp"
-
 namespace Redland {
+
+  class Log;
 
   class Exception : std::exception
   {

@@ -29,7 +29,7 @@
 #include <string>
 #include <ostream>
 
-#include "redlandpp/Log.hpp"
+#include "Log.hpp"
 
 namespace Redland {
 
