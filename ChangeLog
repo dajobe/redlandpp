@@ -1,13 +1,71 @@
+2009-05-20  Dave Beckett <dave@dajobe.org>
+
+	* src/Parser.cpp: Use librdf_parser_guess_name2 with world
+	parameter not old style librdf_parser_guess_name
+
+2009-04-01  Dave Beckett <dave@dajobe.org>
+
+	* redlandpp: ignore generated Makefiles
+
+2009-03-30  Dave Robillard <dave@drobilla.net>
+
+	* redlandpp/Makefile.am: Add missing file.
+
+	* redlandpp/Exception.hpp, redlandpp/Log.hpp, src/Exception.cpp,
+	src/Log.cpp, src/Log.hpp, src/Makefile.am:
+
+	Hide Log.hpp which exposes all sorts of things and doesn't seem to
+	be publicly useful anyway.
+
+	* Makefile.am, configure.ac, redlandpp, redlandpp/Exception.hpp ,
+	redlandpp/Log.hpp, redlandpp/Model.hpp, redlandpp/Node.hpp,
+	redlandpp/Parser.hpp, redlandpp/Redland.hpp,
+	redlandpp/Serializer.hpp, redlandpp/Statement.hpp,
+	redlandpp/Storage.hpp, redlandpp/Stream.hpp, redlandpp/Uri.hpp,
+	redlandpp/World.hpp, redlandpp/Wrapper.hpp, src/Exception.cpp,
+	src/Exception.hpp, src/Log.cpp, src/Log.hpp, src/Makefile.am,
+	src/Model.cpp, src/Model.hpp, src/Node.cpp, src/Node.hpp,
+	src/Parser.cpp, src/Parser.hpp, src/Redland.hpp,
+	src/Serializer.cpp, src/Serializer.hpp, src/Statement.cpp,
+	src/Statement.hpp, src/Storage.cpp, src/Storage.hpp,
+	src/Stream.cpp, src/Stream.hpp, src/Uri.cpp, src/Uri.hpp,
+	src/World.cpp, src/World.hpp, src/Wrapper.hpp, utils/Makefile.am,
+	utils/rdfprocpp.cpp:
+
+	Rearrange things to be a usable installable library.
+
+	Move headers to their own include directory so source dir can be
+	used as include path without code changes (for bundling library in
+	source trees).
+
+	Use fully qualified and quoted include paths for files in this
+	library (ensure correct local versions are used).
+
+	* src/Exception.hpp, src/Log.hpp, src/Model.hpp, src/Node.hpp,
+	src/Parser.hpp, src/Serializer.hpp, src/Statement.hpp,
+	src/Storage.hpp, src/Stream.hpp, src/Uri.hpp, src/World.hpp,
+	src/Wrapper.hpp:
+
+	Code cleanup / consistent formatting.
+
+	Remove 'using' declarations from headers (generally not a good
+	plan, pollutes global namespace).
+
+	* src/Parser.cpp: Fix compilation.
+
 2008-10-10  Dave Robillard <dave@drobilla.net>
 
 	* src/Model.cpp, src/Model.hpp, src/Node.cpp, src/Node.hpp,
 	src/Parser.cpp, src/Serializer.cpp, src/Statement.cpp,
 	src/Statement.hpp, src/Storage.cpp, src/Storage.hpp,
 	src/Stream.cpp, src/Stream.hpp, src/Uri.cpp, src/Uri.hpp,
-	src/World.cpp, src/World.hpp: Fix const-correctness for all
-	classes.
+	src/World.cpp, src/World.hpp:
+
+	Fix const-correctness for all classes.
+	
 	Avoid unnecessary string copy overhead (pass const and/or by
 	reference).
+
 	Remove redundant librdf object getter for every wrapper class
 	(Wrapper::cobj is identical).
 
