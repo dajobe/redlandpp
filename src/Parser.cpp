@@ -74,7 +74,7 @@ namespace Redland {
       identifier_c = (const unsigned char*)identifier.c_str();
 
     const char* name_str;
-    name_str = librdf_parser_guess_name(w->cobj(), mime_type_c, buffer_c, identifier_c);
+    name_str = librdf_parser_guess_name2(w->cobj(), mime_type_c, buffer_c, identifier_c);
     if (name_str == NULL)
       throw Exception("Failed to guess parser for content");
 
