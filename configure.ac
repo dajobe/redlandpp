@@ -107,6 +107,7 @@ fi
 
 dnl Checks for libraries.
 REDLAND_MIN_VERSION=1.0.8
+AC_SUBST(REDLAND_MIN_VERSION)
 if $PKG_CONFIG redland --exists; then
   :
 else
