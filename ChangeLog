@@ -1,5 +1,8 @@
 2009-05-20  Dave Beckett <dave@dajobe.org>
 
+	* configure.ac: AC_SUBST(REDLAND_MIN_VERSION) so that
+	redlandpp.pc.in gets the value.
+
 	* src/Parser.cpp: Use librdf_parser_guess_name2 with world
 	parameter not old style librdf_parser_guess_name
 
