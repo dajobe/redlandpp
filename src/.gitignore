@@ -1,0 +1,7 @@
+*.lo
+*.la
+*.o
+.deps
+.libs
+redlandpp_config.h*
+stamp*

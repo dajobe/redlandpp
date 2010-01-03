@@ -1,0 +1,13 @@
+INSTALL
+Makefile
+Makefile.in
+aclocal.m4
+autom4*
+config.*
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+missing
+redlandpp.pc
