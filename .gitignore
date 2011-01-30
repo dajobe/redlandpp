@@ -11,3 +11,4 @@ libtool
 ltmain.sh
 missing
 redlandpp.pc
+setup.sh
