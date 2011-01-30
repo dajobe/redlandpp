@@ -3,7 +3,7 @@ dnl
 dnl configure.ac - autoconf file for Redland++
 dnl (Process this file with autoconf to produce a configure script.)
 dnl
-dnl Copyright (C) 2008 David Beckett http://www.dajobe.org/
+dnl Copyright (C) 2008-2011 David Beckett http://www.dajobe.org/
 dnl 
 dnl This package is Free Software and part of Redland http://librdf.org/
 dnl 
@@ -22,13 +22,13 @@ dnl
 dnl 
 
 
+AC_PREREQ(2.62)
 AC_INIT(Redland++, 0.1.0, http://bugs.librdf.org/, redlandpp)
-AC_PREREQ(2.50)
-AC_CONFIG_SRCDIR(src/Redland.cpp)
 AC_CONFIG_SRCDIR(redlandpp/Redland.hpp)
-
-AM_INIT_AUTOMAKE([1.7 check-news std-options -Wall])
 AM_CONFIG_HEADER(src/redlandpp_config.h)
+
+AM_INIT_AUTOMAKE([1.11 check-news std-options -Wall])
+
 AM_MAINTAINER_MODE
 
 release_version=no
@@ -75,7 +75,7 @@ AC_DEFUN([REDLAND_CXX_TRY_FLAG], [
   AC_MSG_CHECKING([whether $CXX supports $1])
   redland_save_CXXFLAGS="$CXXFLAGS"
   CXXFLAGS="$CXXFLAGS $1"
-  AC_COMPILE_IFELSE([ ], [redland_cxx_flag=yes], [redland_cxx_flag=no])
+  AC_COMPILE_IFELSE([AC_LANG_SOURCE([ ])], [redland_cxx_flag=yes], [redland_cxx_flag=no])
   CXXFLAGS="$redland_save_CXXFLAGS"
   if test "X$redland_cxx_flag" = "Xyes"; then
     ifelse([$2], , :, [$2])
