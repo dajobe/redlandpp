@@ -1,3 +1,26 @@
+2011-01-29  Dave Beckett <dave@dajobe.org>
+
+	* configure.ac: Modernise autoconf state to match other redland
+	packages
+
+	- Use AC_LANG_SOURCE for newer autoconf
+	- autoconf 2.62+ and automake 1.11+
+
+	* autogen.sh: update autogen.sh
+
+2010-01-02  Dave Beckett <dave@dajobe.org>
+
+	* .gitignore, src/.gitignore, utils/.gitignore: Add .gitignore to
+	replace SVN prop svn:ignore
+
+2009-05-21  Dave Beckett <dave@dajobe.org>
+
+	* configure.ac: AC_SUBST(REDLAND_MIN_VERSION) so that
+	redlandpp.pc.in gets the value.
+
+	* Use librdf_parser_guess_name2 with world parameter not old style
+	librdf_parser_guess_name
+
 2009-05-20  Dave Beckett <dave@dajobe.org>
 
 	* configure.ac: AC_SUBST(REDLAND_MIN_VERSION) so that
